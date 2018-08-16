@@ -63,10 +63,27 @@
 				Copyright &copy; 2015-2018 Scris Game Studio.<br><br><br>
 				Some CSS is from <a href="http://quentincolus.com/about.html">Quentin</a>.<br><br><br>
 				Every task here will soon be vanished tomorrow, however you can edit the time <a href="how.html">here</a>.<br><br><br>
-				<a href="settings.html">Airtable Sync Settings</a><br><br><br>
+		<a id="settingstoggle">Airtable Sync Settings</a><br><br><br>
 			</h4>
 		</div>
+		<div class="row" id="settings">
+				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+					These things could be found on <a href="howsettings.html"><b>this page</b></a>.
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="text" class="in1 form-control" id="in1" placeholder="✍️ Airtable API"/>
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="text" class="form-control" id="in2" placeholder="✍️ Airtable Base"/>
+						</div>
+					</div>
+				</div>
+			</div>
 		<script>
+			$(document).ready(function(){#("settings").hide();});
+                        #("settingstoggle").click(function(){#("settings").toggle();});
 			if(!window.localStorage){
 				alert("LocalStorage is currently unsupported, please update your browser.");
 			}else{
