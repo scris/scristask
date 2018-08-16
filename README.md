@@ -1,4 +1,4 @@
 # Scris Task
-Another Snapchat like to-do list app
+One to-do list app that clean up tasks automatically every day.
 
 Made by Dominik
