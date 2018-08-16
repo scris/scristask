@@ -83,7 +83,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+		</div>
 		<script>
 			$(document).ready(function(){$("#settings").hide();});
                         $("#settingstoggle").click(function(){$("#settings").toggle();});
@@ -93,7 +93,6 @@
 				var storage=window.localStorage;
 				if(storage.getItem("scristaskapi") == null){
 					alert("Seems that you haven't set the api key. Click ok, and set it now.");
-					window.open("https://scris.top/scristask/settings.html")
 				}
  			}
 					//焦点离开时触发事件
