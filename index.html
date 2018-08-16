@@ -102,7 +102,7 @@
 				var storage=window.localStorage;
 				if(storage.getItem("scristaskapi") == null){
 					alert("Seems that you haven't set the api key. Click ok, and set it now.");
-					$("#settings").show();
+					setTimeout(function(){$("#settings").show();},500);
 				}
  			}
 					//焦点离开时触发事件
@@ -110,11 +110,13 @@
 				var txtChange = $("#in1").val();  		 
 				storage.setItem("scristaskapi",txtChange);
 				console.log("in1")
+				loadr();
 			});  
 			$("#in2").on('input propertychange', function(){  
 				var txtChange = $("#in2").val();  		 
 				storage.setItem("scristaskbase",txtChange);
 				console.log("in2")
+				loadr();
 			});  
 			var Airtable = require('airtable');
 			var base = new Airtable({
