@@ -1,4 +1,4 @@
-$("#start").click(function(){
+$("#starty").click(function(){
     maxtime=$("#worktime").val;
     if(!/^\d+$/.test(pmaxtimer))
     {
@@ -18,7 +18,7 @@ $("#start").click(function(){
                     $("finishsound").play();
                     clearInterval(timer);
                     alert("Worktime is up. Now let us have a break!☺️");
-                    
+                    timer = setInterval("breakCountDown()", 1000);  
                 }
             }
             function breakCountDown() {
@@ -32,7 +32,6 @@ $("#start").click(function(){
                     $("finishsound").play();
                     clearInterval(timer);
                     alert("Now it is time for working.👍");
-                    timer = setInterval("breakCountDown()", 1000);  
                 }
             }
             
