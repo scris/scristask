@@ -36,7 +36,7 @@
 			<div class="today">
 			</div>
 	
-			<div class="row">
+			<div class="row" id="taskmain">
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
 					<div class="add-control">
 						<div class="form-group has-feedback">
@@ -58,8 +58,33 @@
 					</ul>
 				</div>
 			</div>
-		</div>
 
+			<div class="row" id="settings">
+				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+					<h4>These things could be found on <a href="howsettings.html"><b>this page</b></a>.</h4>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="text" class="form-control" id="in1" placeholder="✍️ Airtable API"/>
+							<span hljs="" compile="true">
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="text" class="form-control" id="in2" placeholder="✍️ Airtable Base"/>
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="button" id="settingsbtn" value="Click to Update" class="form-control">
+						</div>
+					</div>
+					<h4>				
+						Your api key is only on your computer, <br><br><br>and your tasks are only on Airtable's server.<br><br><br><br>
+					</h4>
+				</div>
+			</div>
+		</div>
+			
 		<div class="footer">
 			<h4>
 				Copyright &copy; 2015-2018 Scris Game Studio.<br><br><br>
@@ -68,33 +93,14 @@
 				<a id="settingstoggle">Airtable Sync Settings</a><br><br><br>
 			</h4>
 		</div>
-		<div class="container">
-			<div class="row" id="settings">
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-					<h4>These things could be found on <a href="howsettings.html"><b>this page</b></a>.</h4>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="text" class="form-control" id="in1" placeholder="✍️ Airtable API"/>
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="text" class="form-control" id="in2" placeholder="✍️ Airtable Base"/>
-						</div>
-					</div>
-					<h4>				
-						Autosaved.<br><br><br>
-						Your api key is only on your computer, <br><br><br>and your tasks are only on Airtable's server.<br><br><br><br>
-					</h4>
-				</div>
-			</div>
-		</div>
+			
 		<script>
 			$(document).ready(function(){
 				$("#settings").hide();
 			});
 			$("#settingstoggle").click(function(){
-				$("#settings").toggle();
+				$("#settings").show();
+				$("#taskmain").hide();
 			});
 			if(!window.localStorage){
 				alert("LocalStorage is currently unsupported, please update your browser.");
@@ -102,22 +108,18 @@
 				var storage=window.localStorage;
 				if(storage.getItem("scristaskapi") == null){
 					alert("Seems that you haven't set the api key. Click ok, and set it now.");
-					setTimeout(function(){$("#settings").show();},500);
+					setTimeout(function(){$("#settings").show();$("#taskmain").hide();},500);
 				}
  			}
-					//焦点离开时触发事件
-			$("#in1").on('input propertychange', function(){  
+			$("#settingsbtn").click(function(){
 				var txtChange = $("#in1").val();  		 
 				storage.setItem("scristaskapi",txtChange);
-				console.log("in1")
-				loadr();
-			});  
-			$("#in2").on('input propertychange', function(){  
+				console.log("in1");
 				var txtChange = $("#in2").val();  		 
 				storage.setItem("scristaskbase",txtChange);
-				console.log("in2")
-				loadr();
-			});  
+				console.log("in2");
+				document.location.reload();
+			});
 			var Airtable = require('airtable');
 			var base = new Airtable({
 				apiKey: storage.getItem("scristaskapi")
