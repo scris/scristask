@@ -1,7 +1,9 @@
 /* vars */
 
-.today{
+.today, #pminute, #psecond, .pclock{
   font-size: 20px;
+	 text-align: center;
+      color: #000;
 }
 
 
@@ -99,7 +101,7 @@
 .add-control .form-control {
   padding-right: 25px;
 }
-.add-control #settingsbtn {
+.add-control .sbtn {
   padding-right: 25px;
 }
 .add-control .refresh {
@@ -132,20 +134,21 @@
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
   color: #cecece;
+	background-color: #000;
 }
 .form-control:focus {
   -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.2);
           box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-#settingsbtn,
-#settingsbtn:focus,
-#settingsbtn:active,
-#settingsbtn:active:focus {
+.sbtn,
+.sbtn:focus,
+.sbtn:active,
+.sbtn:active:focus {
   border: none;
   padding: 10px 15px;
   outline: none;
 }
-#settingsbtn {
+.sbtn {
   -webkit-box-shadow: none;
           box-shadow: none;
   -webkit-transition: all 0.2s linear;
@@ -153,7 +156,7 @@
   color: #131313;
 	background-color: #cecece;
 }
-#settingsbtn:focus {
+.sbtn:focus {
   -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.2);
           box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
@@ -172,11 +175,6 @@
 .animated.fast {
   -webkit-animation-duration: 0.25s;
           animation-duration: 0.25s;
-}
-
-.today{
-  text-align: center;
-      color: #000;
 }
 
 
@@ -386,9 +384,6 @@ svg {
     opacity: 0;
 }
 
-.form-control{
-  background-color: #000;
-}
 
 .change {
     background-image: url(color.svg);

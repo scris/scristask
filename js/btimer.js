@@ -97,6 +97,7 @@
 
 					//displays and alert for the current timer
 					function showAlert() {
+						$("#finishsound").play();
 						window.alert(setterArr[timerIndex].label + ' is DONE!');
 					} //END showAlert
 

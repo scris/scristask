@@ -62,30 +62,21 @@
 			<div class="container" id="blankp"></div>
 			
 			<div class="row" id="ptimer">
+   
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3 pclock">
-					<h4>
-						<div class="psetters add-control">
-							<div class="psetter form-group has-feedback">
-								<div class="plabely">
-									holder
-								</div>
-								<br><br><br>
-								<input type="text" class="form-control" id="projname" placeholder="✌ The project is called..." />
-								<br><br><br>
-								<div class="pindicator form-group has-feedback">
-									0
-								</div>
-								<input type="range" class="pslider" max="100" min="1" value="0">
-							</div>
+						<div id="pomotoro add-control">
+							<span id="pminute">52</span>
+							<span>:</span>
+							<span id="psecond">00</span>
 						</div>
-					</h4>
-
-					<div class="ptimer add-control">
-						<h4><canvas class="ppie" width="300" height="300"></canvas></h4>
-						<h4><a><b><div class="ptime">Ready</div></b></a></h4>
-						<h4><div class="pstate"></div></h4>
+						<br>
+					<div id="psetting add-control">
+						<div class="form-group has-feedback">
+							<input type="text" placeholder="💪 Working Time/min" id="ptime" class="form-control"><br>
+							<input type="button" id="pstart" class="form-control sbtn" value="Start Countdown"><br>
+							<input type="button" id="preset" class="form-control sbtn" value="Reset Time">
+						</div>
 					</div>
-					<div class="add-control"><h4> - Click To Start/Pause - <br><br><br> - Double Click To Reset - </h4></div>
 				</div>
 			</div>
 				
@@ -132,7 +123,7 @@
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="button" id="settingsbtn" value="Click to Update" class="form-control">
+							<input type="button" id="settingsbtn" value="Click to Update" class="form-control sbtn">
 						</div>
 					</div>
 					<h4>				
@@ -151,6 +142,9 @@
 				<br><br><br>
 			</h4>
 		</div>
+		
+		<embed height="1" width="1" src="ding.mp3" loop="false" id="finishsound"></embed>
+	
 		<script>
 			//controller
 			$(document).ready(function(){
