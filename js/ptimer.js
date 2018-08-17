@@ -1,45 +1,45 @@
 $(document).ready(function(){
-    var time = $("#ptime");
-    var start = $("#pstart");
-    var reset = $("#preset");
-    var minute = $("#pminute");
-    var second = $("#psecond");
+    var ptime = $("#ptime");
+    var pstart = $("#pstart");
+    var preset = $("#preset");
+    var pminute = $("#pminute");
+    var psecond = $("#psecond");
 
-    var timer;
+    var ptimer;
 
-    time.bind("input", function(event){
-        if(!/^\d+$/.test(time.val())){
-            time.val("");
-            time.attr("placeholder", "Illegal Input!");
+    ptime.bind("input", function(event){
+        if(!/^\d+$/.test(ptime.val())){
+            ptime.val("");
+            ptime.attr("placeholder", "Illegal Input!");
         }
     });
-    start.bind("click", function(){
-        clearInterval(timer);
+    pstart.bind("click", function(){
+        clearInterval(ptimer);
 
-        if(time.val()){
-            minute.text(setNum(time.val()));
+        if(ptime.val()){
+            pminute.text(setNum(ptime.val()));
         }else{
-            minute.text("52");
+            pminute.text("52");
         }
 
-        second.text("00");
+        psecond.text("00");
 
-        timer = setInterval(function(){
-            if(second.text() == "00" && minute.text() != "00"){
-                second.text("59");
-                minute.text(setNum(minute.text() - 1));
-            }else if(second.text() == "00" && minute.text() == "00"){
-                clearInterval(timer);
+        ptimer = setInterval(function(){
+            if(psecond.text() == "00" && pminute.text() != "00"){
+                psecond.text("59");
+                pminute.text(setNum(pminute.text() - 1));
+            }else if(psecond.text() == "00" && pminute.text() == "00"){
+                clearInterval(ptimer);
              	$("#finishsound").play();
-            }else if(second.text() != "00"){
-                second.text(setNum(second.text() - 1));
+            }else if(psecond.text() != "00"){
+                psecond.text(setNum(psecond.text() - 1));
             }
         }, 1000);
     });
-    reset.bind("click", function(){
-        clearInterval(timer);
-        minute.text("52");
-        second.text("00");
+    preset.bind("click", function(){
+        clearInterval(ptimer);
+        pminute.text("52");
+        psecond.text("00");
     });
 });
 
