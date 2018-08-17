@@ -1,53 +1,19 @@
-$(document).ready(function(){
-    var ptime = $("#ptime");
-    var pstart = $("#pstart");
-    var preset = $("#preset");
-    var pminute = $("#pminute");
-    var psecond = $("#psecond");
-
-    var ptimer;
-
-    ptime.bind("input", function(event){
-        if(!/^\d+$/.test(ptime.val())){
-            ptime.val("");
-            ptime.attr("placeholder", "Illegal Input!");
-        }
-    });
-    pstart.bind("click", function(){
-        clearInterval(ptimer);
-
-        if(ptime.val()){
-            pminute.text(setNum(ptime.val()));
-        }else{
-            pminute.text("52");
-        }
-
-        psecond.text("00");
-
-        ptimer = setInterval(function(){
-            if(psecond.text() == "00" && pminute.text() != "00"){
-                psecond.text("59");
-                pminute.text(setNum(pminute.text() - 1));
-            }else if(psecond.text() == "00" && pminute.text() == "00"){
-                clearInterval(ptimer);
-             	$("#finishsound").play();
-             	window.alert("Your time is up.");
-            }else if(psecond.text() != "00"){
-                psecond.text(setNum(psecond.text() - 1));
-            }
-        }, 1000);
-    });
-    preset.bind("click", function(){
-        clearInterval(ptimer);
-        pminute.text("52");
-        psecond.text("00");
-    });
+$("#pstart").click(function(){
+    pmaxtime=$("#ptime").val;
+    ptimer = setInterval("CountDown()", 1000);      
 });
-
-function setNum(num){
-    if(num < 10){
-        return "0" + num;
-    }else{
-        return num;
-    }
-}
+            function CountDown() {
+                if (maxtime >= 0) {
+                    pminutes = Math.floor(maxtime / 60);
+                    pseconds = Math.floor(maxtime % 60);
+                    $("pminute").val = pminutes;
+                    $("psecond").val = pseconds;
+                    if (maxtime == 5 * 60) alert("5 minutes left");
+                        --maxtime;
+                } else{
+                    $("finishsound").play();
+                    clearInterval(ptimer);
+                    alert("Time is up.");
+                }
+            }
+            
