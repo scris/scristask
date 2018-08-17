@@ -72,7 +72,8 @@
 						<br>
 					<div id="psetting add-control">
 						<div class="form-group has-feedback">
-							<input type="text" placeholder="💪 Working Time/min" id="ptime" class="form-control"></div>
+													<input type="text" placeholder="📒 The name of the project" id="proj" class="form-control">
+							<input type="text" placeholder="👨‍💻 Working Time/min" id="ptime" class="form-control"></div>
 							<div class="form-group has-feedback">
 						
 							<input type="button" id="pstart" class="form-control sbtn" value="Start/Reset Countdown"></div>
@@ -83,29 +84,23 @@
 				
 			<div class="container" id="blankb"></div>
 			
-			<div class="row" id="btimer">
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3 clock">
-					<h4>
-						<div class="setters add-control">
-							<div class="setter form-group has-feedback">
-								<div class="labely">
-									holder
-								</div>
-								<br><br><br>
-								<div class="indicator form-group has-feedback">
-									0
-								</div>
-								<input type="range" class="slider" max="100" min="1" value="0">
-							</div>
+<div class="row" id="btimer">
+   
+				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3 pclock">
+						<div id="pomotoro add-control">
+							<span id="minute">52</span>
+							<span>:</span>
+							<span id="second">00</span>
 						</div>
-					</h4>
-
-					<div class="timer add-control">
-						<h4><canvas class="pie" width="300" height="300"></canvas></h4>
-						<h4><a><b><div class="time">Ready</div></b></a></h4>
-						<h4><div class="state"></div></h4>
+						<br>
+					<div id="setting add-control">
+						<div class="form-group has-feedback">
+							<input type="text" placeholder="💪 Working Time/min" id="worktime" class="form-control">							<input type="text" placeholder="🔌 Breaktime/min" id="breaktime" class="form-control"></div>
+							<div class="form-group has-feedback">
+						
+							<input type="button" id="start" class="form-control sbtn" value="Start/Reset Workbreak Timer"></div>
+						</div>
 					</div>
-					<div class="add-control"><h4> - Click To Start/Pause - <br><br><br> - Double Click To Reset - </h4></div>
 				</div>
 			</div>
 				

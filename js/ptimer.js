@@ -8,12 +8,12 @@ $("#pstart").click(function(){
 });
             function CountDown() {
                 if (maxtime >= 0) {
-                    pminutes = Math.floor(maxtime / 60);
-                    pseconds = Math.floor(maxtime % 60);
+                    pminutes = Math.floor(pmaxtime / 60);
+                    pseconds = Math.floor(pmaxtime % 60);
                     $("pminute").val = pminutes;
                     $("psecond").val = pseconds;
-                    if (maxtime == 5 * 60) alert("5 minutes left");
-                        --maxtime;
+                    if (pmaxtime == 5 * 60) alert("5 minutes left");
+                        --pmaxtime;
                 } else{
                     $("finishsound").play();
                     clearInterval(ptimer);
