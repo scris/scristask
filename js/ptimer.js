@@ -31,6 +31,7 @@ $(document).ready(function(){
             }else if(psecond.text() == "00" && pminute.text() == "00"){
                 clearInterval(ptimer);
              	$("#finishsound").play();
+             	window.alert("Your time is up.");
             }else if(psecond.text() != "00"){
                 psecond.text(setNum(psecond.text() - 1));
             }
