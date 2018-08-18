@@ -4,7 +4,12 @@ $("#pstart").click(function(){
     {
             pmaxtime = 52 * 60;
     }
+    $("#ppause").show();
     ptimer = setInterval("CountDown()", 1000);      
+});
+$("#ppause").click(function(){
+    if($("#ppause").val() == "Pause") pausyFunction();     
+    else resumyFunction();
 });
 var pplayer = $("#finishsound")[0];
             function CountDown() {
@@ -19,6 +24,16 @@ var pplayer = $("#finishsound")[0];
                     pplayer.play();
                     clearInterval(ptimer);
                     alert("Time is up.");
+                    $("#ppause").hide();
                 }
             }
-            
+            function pausyFunction()
+            {
+                $("#ppause").val("Reusme");
+                clearInterval(ptimer);
+            }
+            function resumyFunction()
+            {
+                $("#ppause").val("Pause");
+                ptimer = setInterval("CountDown()", 1000);
+            }

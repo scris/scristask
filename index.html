@@ -32,6 +32,15 @@
 		</style>
 	</head>
 	<body class="body">
+	<script>
+				$("#settings").hide();
+				$("#taskmain").show();
+				$("#btimer").hide();
+				$("#ptimer").hide();
+				$("#blankb").hide();
+				$("#blankp").hide();
+				$("#ppause").hide();
+	</script>
 		<div class="container">
 			<div class="today">
 			</div>
@@ -76,7 +85,8 @@
 							<input type="text" placeholder="👨‍💻 Working Time/min" id="ptime" class="form-control"></div>
 							<div class="form-group has-feedback">
 						
-							<input type="button" id="pstart" class="form-control sbtn" value="Start/Reset Countdown"></div>
+							<input type="button" id="pstart" class="form-control sbtn" value="Start/Reset Countdown">	<br>
+							<input type="button" id="ppause" class="form-control sbtn" value="Pause"></div>
 						</div>
 					</div>
 				</div>
@@ -101,7 +111,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
 				
 			<div class="row" id="settings">
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
@@ -146,14 +155,6 @@
 	
 		<script>
 			//controller
-			$(document).ready(function(){
-				$("#settings").hide();
-				$("#taskmain").show();
-				$("#btimer").hide();
-				$("#ptimer").hide();
-				$("#blankb").hide();
-				$("#blankp").hide();
-			});
 			$("#settingstoggle").click(function(){
 				$("#settings").show();
 				$("#taskmain").hide();
