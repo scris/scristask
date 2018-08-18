@@ -2,9 +2,9 @@ $("#starty").click(function(){
     maxtime=$("#worktime").val;
     if(!/^\d+$/.test(pmaxtimer))
     {
-            maxtimer = 52 * 60;
+            maxtime = 52 * 60;
     }
-    timer = setInterval("workCountDown()", 1000);      
+    btimer = setInterval("workCountDown()", 1000);      
 });
             function workCountDown() {
                 if (maxtime >= 0) {
@@ -16,9 +16,9 @@ $("#starty").click(function(){
                         --maxtime;
                 } else{
                     $("finishsound").play();
-                    clearInterval(timer);
+                    clearInterval(btimer);
                     alert("Worktime is up. Now let us have a break!☺️");
-                    timer = setInterval("breakCountDown()", 1000);  
+                    btimer = setInterval("breakCountDown()", 1000);  
                 }
             }
             function breakCountDown() {
@@ -30,7 +30,7 @@ $("#starty").click(function(){
                     --maxtime;
                 } else{
                     $("finishsound").play();
-                    clearInterval(timer);
+                    clearInterval(btimer);
                     alert("Now it is time for working.👍");
                 }
             }

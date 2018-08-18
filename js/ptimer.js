@@ -2,7 +2,7 @@ $("#pstart").click(function(){
     pmaxtime=$("#ptime").val;
     if(!/^\d+$/.test(pmaxtimer))
     {
-            pmaxtimer = 52 * 60;
+            pmaxtime = 52 * 60;
     }
     ptimer = setInterval("CountDown()", 1000);      
 });
