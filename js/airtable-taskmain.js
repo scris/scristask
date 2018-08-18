@@ -252,7 +252,7 @@
 
 			var n = weekday[d.getDay()];
 
-			var randomWordArray = Array("Wow, it's ", "Hey there, it's ", "Happy ", "It's currently ", "Awesome, it's ", "Have a nice ", "Happy splendid ", "Enjoy your ", "What a good day, it's");
+			var randomWordArray = Array("Wow, it's ", "Hey there, it's ", "Happy ", "It's currently ", "Awesome, it's ", "Have a nice ", "Happy splendid ", "Enjoy your ", "What a good day, it's ");
 
 			var randomWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
 
