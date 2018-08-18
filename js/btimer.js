@@ -6,6 +6,7 @@ $("#starty").click(function(){
     }
     btimer = setInterval("workCountDown()", 1000);      
 });
+var player = $("#finishsound")[0];
             function workCountDown() {
                 if (maxtime >= 0) {
                     minutes = Math.floor(maxtime / 60);
@@ -15,7 +16,7 @@ $("#starty").click(function(){
                     if (maxtime == 5 * 60) alert("5 minutes left for working");
                         --maxtime;
                 } else{
-                    $("#finishsound").play();
+                    player.play();
                     clearInterval(btimer);
                     alert("Worktime is up. Now let us have a break!☺️");
                     maxtime=$("#breaktime").val() * 60;
@@ -34,7 +35,7 @@ $("#starty").click(function(){
                     $("#second").text(seconds);
                     --maxtime;
                 } else{
-                    $("#finishsound").play();
+                    player.play();
                     clearInterval(btimer);
                     alert("Now it is time for working.👍");
                 }

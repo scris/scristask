@@ -6,6 +6,7 @@ $("#pstart").click(function(){
     }
     ptimer = setInterval("CountDown()", 1000);      
 });
+var pplayer = $("#finishsound")[0];
             function CountDown() {
                 if (pmaxtime >= 0) {
                     pminutes = Math.floor(pmaxtime / 60);
@@ -15,7 +16,7 @@ $("#pstart").click(function(){
                     if (pmaxtime == 5 * 60) alert("5 minutes left");
                         --pmaxtime;
                 } else{
-                    $("#finishsound").play();
+                    pplayer.play();
                     clearInterval(ptimer);
                     alert("Time is up.");
                 }
