@@ -12,3 +12,7 @@ One to-do list app that clean up tasks automatically every day.
 We have already announced a productive tool called Scris Efficiency 2 (aka Seffi or 极效率2), so Scris Task is also called Scris Efficiency 3 (or 极效率3)
 
 Made by Dominik
+
+![scrismade](https://img.shields.io/badge/Made%20with%20love%20by-Scris%20Game%20Studio-33ccff.svg)
+
+![dominikmade](https://img.shields.io/badge/Developed%20by-Dominik%20Qiu-brightgreen.svg)
