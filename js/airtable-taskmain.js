@@ -162,6 +162,7 @@
 						addItem(itemVal, record.get('isfinished'), record.getId(), true);
 					});
 					formControl.focus();
+					$(".form-control").val("");
 				});
 
 				$(".refresh").on("click", refresh);
