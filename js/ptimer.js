@@ -1,6 +1,6 @@
 $("#pstart").click(function(){
     pmaxtime=$("#ptime").val;
-    if(!/^\d+$/.test(pmaxtimer))
+    if(!/^\d+$/.test(pmaxtime))
     {
             pmaxtime = 52 * 60;
     }
