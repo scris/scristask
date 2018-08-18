@@ -17,4 +17,6 @@ Made by Dominik
 
 ![dominikmade](https://img.shields.io/badge/Developed%20by-Dominik%20Qiu-brightgreen.svg)
 
+![rv](https://img.shields.io/github/release/scris/scristask.svg)
+
 ![download-counting](https://img.shields.io/github/downloads/atom/atom/total.svg)
