@@ -1,12 +1,14 @@
+
+var player = $("#finishsound")[0];
 $("#starty").click(function(){
     maxtime=$("#worktime").val() * 60;
     if(!/^\d+$/.test(maxtime))
     {
             maxtime = 52 * 60;
     }
+    player.load();
     btimer = setInterval("workCountDown()", 1000);      
 });
-var player = $("#finishsound")[0];
             function workCountDown() {
                 if (maxtime >= 0) {
                     minutes = Math.floor(maxtime / 60);

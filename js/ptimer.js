@@ -1,9 +1,12 @@
+
+var pplayer = $("#finishsound")[0];
 $("#pstart").click(function(){
     pmaxtime=$("#ptime").val() * 60;
     if(!/^\d+$/.test(pmaxtime))
     {
             pmaxtime = 52 * 60;
     }
+    pplayer.load();
     $("#ppause").show(700);
     ptimer = setInterval("CountDown()", 1000);      
 });
@@ -11,7 +14,6 @@ $("#ppause").click(function(){
     if($("#ppause").val() == "Pause") pausyFunction();     
     else resumyFunction();
 });
-var pplayer = $("#finishsound")[0];
             function CountDown() {
                 if (pmaxtime >= 0) {
                     pminutes = Math.floor(pmaxtime / 60);
