@@ -4,7 +4,7 @@ $("#pstart").click(function(){
     {
             pmaxtime = 52 * 60;
     }
-    $("#ppause").show();
+    $("#ppause").show(1500);
     ptimer = setInterval("CountDown()", 1000);      
 });
 $("#ppause").click(function(){
@@ -24,7 +24,7 @@ var pplayer = $("#finishsound")[0];
                     pplayer.play();
                     clearInterval(ptimer);
                     alert("Time is up.");
-                    $("#ppause").hide();
+                    $("#ppause").hide(1500);
                 }
             }
             function pausyFunction()
