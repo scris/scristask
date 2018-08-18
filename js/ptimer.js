@@ -10,8 +10,8 @@ $("#pstart").click(function(){
                 if (pmaxtime >= 0) {
                     pminutes = Math.floor(pmaxtime / 60);
                     pseconds = Math.floor(pmaxtime % 60);
-                    $("#pminute").val = pminutes;
-                    $("#psecond").val = pseconds;
+                    $("#pminute").val(pminutes);
+                    $("#psecond").val(pseconds);
                     if (pmaxtime == 5 * 60) alert("5 minutes left");
                         --pmaxtime;
                 } else{
