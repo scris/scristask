@@ -10,8 +10,8 @@ $("#starty").click(function(){
                 if (maxtime >= 0) {
                     minutes = Math.floor(maxtime / 60);
                     seconds = Math.floor(maxtime % 60);
-                    $("#minute").val("Worktime" +minutes);
-                    $("#second").val(seconds);
+                    $("#minute").text("Worktime" +minutes);
+                    $("#second").text(seconds);
                     if (maxtime == 5 * 60) alert("5 minutes left for working");
                         --maxtime;
                 } else{
@@ -25,8 +25,8 @@ $("#starty").click(function(){
                 if (maxtime >= 0) {
                     minutes = Math.floor(maxtime / 60);
                     seconds = Math.floor(maxtime % 60);
-                    $("#minute").val("Breaktime" + minutes);
-                    $("#second").val(seconds);
+                    $("#minute").text("Breaktime" + minutes);
+                    $("#second").text(seconds);
                     --maxtime;
                 } else{
                     $("#finishsound").play();
