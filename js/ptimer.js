@@ -7,7 +7,7 @@ $("#pstart").click(function(){
     ptimer = setInterval("CountDown()", 1000);      
 });
             function CountDown() {
-                if (maxtime >= 0) {
+                if (pmaxtime >= 0) {
                     pminutes = Math.floor(pmaxtime / 60);
                     pseconds = Math.floor(pmaxtime % 60);
                     $("#pminute").val = pminutes;
