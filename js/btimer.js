@@ -1,5 +1,5 @@
 $("#starty").click(function(){
-    maxtime=$("#worktime").val;
+    maxtime=$("#worktime").val();
     if(!/^\d+$/.test(maxtime))
     {
             maxtime = 52 * 60;
@@ -18,6 +18,11 @@ $("#starty").click(function(){
                     $("#finishsound").play();
                     clearInterval(btimer);
                     alert("Worktime is up. Now let us have a break!☺️");
+                    maxtime=$("#breaktime").val();
+                    if(!/^\d+$/.test(maxtime))
+                    {
+                        maxtime = 17 * 60;
+                    }
                     btimer = setInterval("breakCountDown()", 1000);  
                 }
             }
