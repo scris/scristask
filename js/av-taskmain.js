@@ -6,7 +6,17 @@ AV.init({
 	appKey: APP_KEY,
 	region: 'us'
 });
-
+var currentUser = AV.User.current();
+if (currentUser) {
+	//nothing to show
+} else {
+	$("#login").show();
+	$("#taskmain").hide();
+	$("#btimer").hide();
+	$("#ptimer").hide();
+	$("#blankb").hide();
+	$("#blankp").hide();
+}
 //login
 $("#loginbtn").click(function () {
 	var avuuser = $("#in1").val();
