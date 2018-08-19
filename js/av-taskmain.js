@@ -35,23 +35,6 @@ var deleter = function (record) {
 
 };
 
-var loadr = function () {
-	var myDate = new Date();
-	var year = myDate.getFullYear();
-	var month = myDate.getMonth() + 1;
-	var day = myDate.getDate();
-	var newDay = year + "-" + month + "-" + day;
-	var query = new AV.Query('task');
-	query.equalTo('owner', AV.User.current());
-	query.equalTo('day', newDay);
-	query.find().then(function (results) {
-
-	}, function (error) {
-
-	});
-};
-
-
 
 //tasks
 var state = [];
@@ -139,6 +122,27 @@ function addItem(text, status, id, noUpdate) {
 		pushToState(text, "new", id);
 	}
 }
+
+function addeach(item, index){
+	addItem(item.get("taskname"), item.get("isfinished"), item.id, true);
+}
+
+var loadr = function () {
+	var myDate = new Date();
+	var year = myDate.getFullYear();
+	var month = myDate.getMonth() + 1;
+	var day = myDate.getDate();
+	var newDay = year + "-" + month + "-" + day;
+	var query = new AV.Query('task');
+	query.equalTo('owner', AV.User.current());
+	query.equalTo('day', newDay);
+	query.find().then(function (results) {
+		results.forEach(addeach);
+	}, function (error) {
+		alert(JSON.stringify(error));
+	});
+};
+
 
 function refresh() {
 	$(".todo-list li").each(function (i) {
