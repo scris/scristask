@@ -8,7 +8,19 @@ var deleter = function (record) {
 };
 
 var loadr = function () {
-
+	var myDate = new Date();    
+	var year = myDate.getFullYear();
+	var month = myDate.getMonth()+1;
+	var day = myDate.getDate();
+	var newDay = year + “-” + month + “-” + day;
+	var query = new AV.Query('task');
+	query.equalTo('owner', AV.User.current());
+	query.equalTo('day', newDay);
+	query.find().then(function (results) {
+		
+	}, function (error) {
+		
+	});
 };
 
 
@@ -134,6 +146,12 @@ $(function () {
 			todoFolder.set('taskname', itemVal);
 			todoFolder.set('isfinished', false);
 			todoFolder.set('owner', AV.User.current());
+			var myDate = new Date();    
+			var year = myDate.getFullYear();
+			var month = myDate.getMonth()+1;
+			var day = myDate.getDate();
+			var newDay = year + “-” + month + “-” + day;
+			todoFolder.set('day', newDay)
 			todoFolder.save().then(function (todo) {
 				addItem(itemVal, false, todo.id, true);
 			}, function (error) {
