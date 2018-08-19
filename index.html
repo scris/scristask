@@ -30,22 +30,13 @@
 				font: 14px 'vffree72', sans-serif;
 			}
 			
-			#starty, #pstart, #ppause
+			#starty, #pstart, #ppause, #loginbtn, #regbtn
 			{
 			    cursor: pointer;
 			}
 		</style>
 	</head>
 	<body class="body">
-	<script>
-				$("#settings").hide();
-				$("#taskmain").show();
-				$("#btimer").hide();
-				$("#ptimer").hide();
-				$("#blankb").hide();
-				$("#blankp").hide();
-				$("#ppause").hide();
-	</script>
 		<div class="container">
 			<div class="today">
 			</div>
@@ -119,16 +110,11 @@
 				</div>
 			</div>
 				
-			<div class="row" id="settings" style="display: none;">
+			<div class="row" id="login" style="display: none;">
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="username" class="form-control" id="in0" placeholder="📛 User Name" required autofocus/>
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="password" class="form-control" id="in1" placeholder="📮 Email Address" required/>
+							<input type="username" class="form-control" id="in1" placeholder="📛 User Name" required autofocus/>
 						</div>
 					</div>
 					<div class="add-control">
@@ -138,38 +124,69 @@
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="button" id="settingsbtn1" value="Log in" class="form-control sbtn">
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="button" id="settingsbtn2" value="Register" class="form-control sbtn">
+							<input type="button" id="loginbtn" value="Log in" class="form-control sbtn">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-			
+		
+		<div class="row" id="reg" style="display: none;">
+				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="username" class="form-control" id="regusername" placeholder="📛 User Name" required autofocus/>
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="password" class="form-control" id="regemail" placeholder="📮 Email Address" required/>
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="email" class="form-control" id="regpassword" placeholder="🤫 Your password" required/>
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="button" id="regbtn" value="Register" class="form-control sbtn">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 		<div class="footer">
 			<h4>
 				Copyright &copy; 2015-2018 Scris Game Studio.<br><br><br>
 				Some CSS is from <a href="http://quentincolus.com/about.html">Quentin</a>.<br><br><br>
 				Every task here will soon be vanished tomorrow, however you can edit the time <a href="how.html">here</a>.<br><br><br><br>
-				<a id="settingstoggle">Airtable Sync Settings</a> | <a id="ptimertoggle">Project Timer</a> | <a id="btimertoggle">Work &amp; Break Timer</a>
+				<a id="logintoggle">Login</a> |<a id="regtoggle">Register</a> | <a id="ptimertoggle">Project Timer</a> | <a id="btimertoggle">Work &amp; Break Timer</a>
 				<br><br><br>
 			</h4>
 		</div>
 		
 	
 		<audio id="finishsound">
-<source	src="ding.mp3"/>
-</audio>
+			<source	src="ding.mp3"/>
+		</audio>
 
 	
 		<script>
 			//controller
-			$("#settingstoggle").click(function(){
-				$("#settings").show();
+			$("#logintoggle").click(function(){
+				$("#login").show();
+				$("#reg").hide();
+				$("#taskmain").hide();
+				$("#btimer").hide();
+				$("#ptimer").hide();
+				$("#blankb").hide();
+				$("#blankp").hide();
+			});
+			$("#regtoggle").click(function(){
+				$("#login").hide();
+				$("#reg").show();
 				$("#taskmain").hide();
 				$("#btimer").hide();
 				$("#ptimer").hide();
@@ -179,13 +196,15 @@
 			$("#btimertoggle").click(function(){
 				$("#taskmain").show();
 				$("#btimer").toggle();
-				$("#settings").hide();
+				$("#login").hide();
+				$("#reg").hide();
 				$("#blankb").toggle();
 			});
 			$("#ptimertoggle").click(function(){
 				$("#taskmain").show();
 				$("#ptimer").toggle();
-				$("#settings").hide();
+				$("#login").hide();
+				$("#reg").hide();
 				$("#blankp").toggle();
 			});
 			
@@ -208,9 +227,8 @@
 					setTimeout(function(){$("#settings").show();$("#taskmain").hide();},500);
 				}
  			}
-			$("#settingsbtn1").click(function(){
-				var avuuser = $("#in0").val();
-				var avuemail = $("#in1").val();  		 
+			$("#loginbtn").click(function(){
+				var avuuser = $("#in1").val();		 
 				var avupwd = $("#in2").val();
 				AV.User.logIn(avuuser, avupwd).then(function (loginedUser) {
 					document.location.reload();
@@ -219,10 +237,9 @@
 				});
 			});
 			function signup() {
-			  var username = $('#in0').val();
-			  var password = $('#in2').val();
-			  var email = $('in1').val();
-
+			  var username = $('#regusername').val();
+			  var password = $('#regpassword').val();
+			  var email = $('regemail').val();
 			  // LeanCloud - 注册
 			  // https://leancloud.cn/docs/leanstorage_guide-js.html#注册
 			  var user = new AV.User();
