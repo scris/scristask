@@ -119,7 +119,7 @@
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="email" class="form-control" id="in2" placeholder="🤫 Your password" required/>
+							<input type="password" class="form-control" id="in2" placeholder="🤫 Your password" required/>
 						</div>
 					</div>
 					<div class="add-control">
@@ -140,12 +140,12 @@
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="password" class="form-control" id="regemail" placeholder="📮 Email Address" required/>
+							<input type="email" class="form-control" id="regemail" placeholder="📮 Email Address" required/>
 						</div>
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="email" class="form-control" id="regpassword" placeholder="🤫 Your password" required/>
+							<input type="password" class="form-control" id="regpassword" placeholder="🤫 Your password" required/>
 						</div>
 					</div>
 					<div class="add-control">
@@ -162,7 +162,7 @@
 				Copyright &copy; 2015-2018 Scris Game Studio.<br><br><br>
 				Some CSS is from <a href="http://quentincolus.com/about.html">Quentin</a>.<br><br><br>
 				Every task here will soon be vanished tomorrow, however you can edit the time <a href="how.html">here</a>.<br><br><br><br>
-				<a id="logintoggle">Login</a> |<a id="regtoggle">Register</a> | <a id="ptimertoggle">Project Timer</a> | <a id="btimertoggle">Work &amp; Break Timer</a>
+				<a id="logintoggle">Login</a> | <a id="regtoggle">Register</a> | <a id="ptimertoggle">Project Timer</a> | <a id="btimertoggle">Work &amp; Break Timer</a>
 				<br><br><br>
 			</h4>
 		</div>
@@ -253,7 +253,7 @@
 				alert(JSON.stringify(error));
 			  }));
 			};
-			$("settingsbtn2").click(function(e){
+			$("regbtn").click(function(e){
 				e.preventDefault();
 				signup();
 			});
