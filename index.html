@@ -224,7 +224,10 @@
 						alert(JSON.stringify(error));
 					}));
 				});
-				document.location.reload();
+				setTimeout(function () {
+					document.location.reload();
+				},
+				800);
 			});
 		</script>
 		<script src="js/av-taskmain.js"></script>
