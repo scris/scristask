@@ -1,4 +1,22 @@
+//leancloud-av
+var APP_ID = 'C7SVWNehvavYoUH5cssIKYDH-MdYXbMMI';
+var APP_KEY = 'nJ2QMhw8deT5QwNt40rjsaK7';
+AV.init({
+	appId: APP_ID,
+	appKey: APP_KEY,
+	region: 'us'
+});
 
+//login
+$("#loginbtn").click(function () {
+	var avuuser = $("#in1").val();
+	var avupwd = $("#in2").val();
+	AV.User.logIn(avuuser, avupwd).then(function (loginedUser) {
+		document.location.reload();
+	}, function (error) {
+		alert(JSON.stringify(error));
+	});
+});
 
 var avtask = AV.Object.extend('task');
 var avnote = AV.Object.extend('note');
@@ -8,18 +26,18 @@ var deleter = function (record) {
 };
 
 var loadr = function () {
-	var myDate = new Date();    
+	var myDate = new Date();
 	var year = myDate.getFullYear();
-	var month = myDate.getMonth()+1;
+	var month = myDate.getMonth() + 1;
 	var day = myDate.getDate();
-	var newDay = year + “-” + month + “-” + day;
+	var newDay = year + "-" + month + "-" + day;
 	var query = new AV.Query('task');
 	query.equalTo('owner', AV.User.current());
 	query.equalTo('day', newDay);
 	query.find().then(function (results) {
-		
+
 	}, function (error) {
-		
+
 	});
 };
 
@@ -146,11 +164,11 @@ $(function () {
 			todoFolder.set('taskname', itemVal);
 			todoFolder.set('isfinished', false);
 			todoFolder.set('owner', AV.User.current());
-			var myDate = new Date();    
+			var myDate = new Date();
 			var year = myDate.getFullYear();
-			var month = myDate.getMonth()+1;
+			var month = myDate.getMonth() + 1;
 			var day = myDate.getDate();
-			var newDay = year + “-” + month + “-” + day;
+			var newDay = year + "-" + month + "-" + day;
 			todoFolder.set('day', newDay)
 			todoFolder.save().then(function (todo) {
 				addItem(itemVal, false, todo.id, true);
