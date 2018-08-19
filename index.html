@@ -226,6 +226,9 @@
 				});
 			});
 			$("settingsbtn2").click(function(){
+				var avuuser = $("#in0").val();
+				var avuemail = $("#in1").val();  		 
+				var avupwd = $("#in2").val();
 				var reguser = new AV.User();
 				reguser.setUsername(avuuser);
 				reguser.setPassword(avupwd);

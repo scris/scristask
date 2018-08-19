@@ -131,10 +131,11 @@ $(function () {
 			var todoFolder = new avtask();
 			todoFolder.set('taskname', itemVal);
 			todoFolder.set('isfinished', false);
+			todoFolder.set('owner', AV.User.current());
 			todoFolder.save().then(function (todo) {
 				addItem(itemVal, false, todo.id, true);
 			}, function (error) {
-				console.error(error);
+				alert(JSON.stringify(error));
 			});
 			formControl.focus();
 			$(".form-control").val("");
