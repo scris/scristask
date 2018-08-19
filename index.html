@@ -139,7 +139,12 @@
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="button" id="settingsbtn" value="Log in/Register" class="form-control sbtn">
+							<input type="button" id="settingsbtn1" value="Log in" class="form-control sbtn">
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="button" id="settingsbtn2" value="Register" class="form-control sbtn">
 						</div>
 					</div>
 					<h4>				
@@ -207,27 +212,32 @@
 					setTimeout(function(){$("#settings").show();$("#taskmain").hide();},500);
 				}
  			}
-			$("#settingsbtn").click(function(){
+			$("#settingsbtn1").click(function(){
 				var avuuser = $("#in0").val();
 				var avuemail = $("#in1").val();  		 
 				var avupwd = $("#in2").val();
 				AV.User.logIn(avuuser, avupwd).then(function (loginedUser) {
-					login();
+					setTimeout(function () {
+						document.location.reload();
+					},
+					800);
 				}, function (error) {
-					var user = new AV.User();
-					user.setUsername(avuuser);
-					user.setPassword(avupwd);
-					user.setEmail(avuemail);
-					user.signUp().then(function (loginedUser) {
-						login();
-					}, (function (error) {
-						alert(JSON.stringify(error));
-					}));
+					alert(JSON.stringify(error));
 				});
-				setTimeout(function () {
-					document.location.reload();
-				},
-				800);
+			});
+			$("settingsbtn2").click(function(){
+				var reguser = new AV.User();
+				reguser.setUsername(avuuser);
+				reguser.setPassword(avupwd);
+				reguser.setEmail(avuemail);
+				reguser.signUp().then(function (loginedUser) {
+					setTimeout(function () {
+						document.location.reload();
+					},
+					800);
+				}, (function (error) {
+					alert(JSON.stringify(error));
+				}));
 			});
 		</script>
 		<script src="js/av-taskmain.js"></script>
