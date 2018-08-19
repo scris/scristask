@@ -121,20 +121,19 @@
 				
 			<div class="row" id="settings" style="display: none;">
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-					<h4>These things could be found on <a href="howsettings.html"><b>this page</b></a>.</h4>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="text" class="form-control" id="in0" placeholder="📛 User Name"/>
+							<input type="username" class="form-control" id="in0" placeholder="📛 User Name" required autofocus/>
 						</div>
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="text" class="form-control" id="in1" placeholder="📮 Email Address"/>
+							<input type="password" class="form-control" id="in1" placeholder="📮 Email Address" required/>
 						</div>
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="text" class="form-control" id="in2" placeholder="🤫 Your password"/>
+							<input type="email" class="form-control" id="in2" placeholder="🤫 Your password" required/>
 						</div>
 					</div>
 					<div class="add-control">
@@ -147,9 +146,6 @@
 							<input type="button" id="settingsbtn2" value="Register" class="form-control sbtn">
 						</div>
 					</div>
-					<h4>				
-						Your api key is only on your computer, <br><br><br>and your tasks are only on Airtable's server.<br><br><br><br>
-					</h4>
 				</div>
 			</div>
 		</div>
@@ -217,30 +213,32 @@
 				var avuemail = $("#in1").val();  		 
 				var avupwd = $("#in2").val();
 				AV.User.logIn(avuuser, avupwd).then(function (loginedUser) {
-					setTimeout(function () {
-						document.location.reload();
-					},
-					800);
+					document.location.reload();
 				}, function (error) {
 					alert(JSON.stringify(error));
 				});
 			});
-			$("settingsbtn2").click(function(){
-				var avuuser = $("#in0").val();
-				var avuemail = $("#in1").val();  		 
-				var avupwd = $("#in2").val();
-				var reguser = new AV.User();
-				reguser.setUsername(avuuser);
-				reguser.setPassword(avupwd);
-				reguser.setEmail(avuemail);
-				reguser.signUp().then(function (loginedUser) {
-					setTimeout(function () {
-						document.location.reload();
-					},
-					800);
-				}, (function (error) {
-					alert(JSON.stringify(error));
-				}));
+			function signup() {
+			  var username = $('#in0').val();
+			  var password = $('#in2').val();
+			  var email = $('in1').val();
+
+			  // LeanCloud - 注册
+			  // https://leancloud.cn/docs/leanstorage_guide-js.html#注册
+			  var user = new AV.User();
+			  user.setUsername(username);
+			  user.setPassword(password);
+			  user.setEmail(email);
+			  console.log(user);
+			  user.signUp().then(function (loginedUser) {
+				document.location.reload();
+			  }, (function (error) {
+				alert(JSON.stringify(error));
+			  }));
+			};
+			$("settingsbtn2").click(function(e){
+				e.preventDefault();
+				signup();
 			});
 		</script>
 		<script src="js/av-taskmain.js"></script>
