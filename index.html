@@ -8,8 +8,8 @@
 		<script src="js/jquery-3.3.1.min.js">
 		</script>
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-		<script src="js/airtable.browser.js">
-		</script>
+		<script src="js/airtable.browser.js"></script>
+		<script src="js/av-min.js"></script>
 		<meta name="viewport" content="minimal-ui,width=device-width"/>	
  		<link rel="apple-touch-icon" href="task.png">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -98,41 +98,48 @@
 				
 			<div class="container" id="blankb" style="display: none;"></div>
 			
-<div class="row" id="btimer" style="display: none;">
-   
+			<div class="row" id="btimer" style="display: none;">
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3 pclock">
-						<div id="pomotoro add-control">
-							<span id="minute">52</span>
-							<span>:</span>
-							<span id="second">00</span>
-						</div>
+					<div id="pomotoro add-control">
+						<span id="minute">52</span>
+						<span>:</span>
+						<span id="second">00</span>
+					</div>
+					<br>
+				<div id="setting add-control">
+					<div class="form-group has-feedback">
+						<input type="text" placeholder="💪 Working Time/min" id="worktime" class="form-control">
 						<br>
-					<div id="setting add-control">
-						<div class="form-group has-feedback">
-							<input type="text" placeholder="💪 Working Time/min" id="worktime" class="form-control">			<br>				<input type="text" placeholder="🔌 Breaktime/min" id="breaktime" class="form-control"></div>
-							<div class="form-group has-feedback">
-						
-							<input type="button" id="starty" class="form-control sbtn" value="Start/Reset Workbreak Timer"></div>
-						</div>
+						<input type="text" placeholder="🔌 Breaktime/min" id="breaktime" class="form-control">
+					</div>
+					<div class="form-group has-feedback">
+						<input type="button" id="starty" class="form-control sbtn" value="Start/Reset Workbreak Timer">
+					</div>
 					</div>
 				</div>
+			</div>
 				
 			<div class="row" id="settings" style="display: none;">
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
 					<h4>These things could be found on <a href="howsettings.html"><b>this page</b></a>.</h4>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="text" class="form-control" id="in1" placeholder="🤫 Airtable API Key"/>
+							<input type="text" class="form-control" id="in0" placeholder="📛 User Name"/>
 						</div>
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="text" class="form-control" id="in2" placeholder="🕵 Airtable Base"/>
+							<input type="text" class="form-control" id="in1" placeholder="📮 Email Address"/>
 						</div>
 					</div>
 					<div class="add-control">
 						<div class="form-group has-feedback">
-							<input type="button" id="settingsbtn" value="Click to Update" class="form-control sbtn">
+							<input type="text" class="form-control" id="in2" placeholder="🤫 Your password"/>
+						</div>
+					</div>
+					<div class="add-control">
+						<div class="form-group has-feedback">
+							<input type="button" id="settingsbtn" value="Log in/Register" class="form-control sbtn">
 						</div>
 					</div>
 					<h4>				
@@ -181,28 +188,46 @@
 				$("#blankp").toggle();
 			});
 			
-			
+			//lencloud-av
+			var APP_ID = 'C7SVWNehvavYoUH5cssIKYDH-MdYXbMMI';
+			var APP_KEY = 'nJ2QMhw8deT5QwNt40rjsaK7';
+			AV.init({
+				appId: APP_ID,
+				appKey: APP_KEY,
+				region: 'us'
+			});
+
 			//localstorage
 			if(!window.localStorage){
 				alert("LocalStorage is currently unsupported, please update your browser.");
 			}else{
 				var storage=window.localStorage;
 				if(storage.getItem("scristaskapi") == null){
-					alert("Seems that you haven't set the api key. Click ok, and set it now.");
+					alert("Seems that you haven't logged in. Click OK to log in.");
 					setTimeout(function(){$("#settings").show();$("#taskmain").hide();},500);
 				}
  			}
 			$("#settingsbtn").click(function(){
-				var txtChange = $("#in1").val();  		 
-				storage.setItem("scristaskapi",txtChange);
-				console.log("in1");
-				var txtChange = $("#in2").val();  		 
-				storage.setItem("scristaskbase",txtChange);
-				console.log("in2");
+				var avuuser = $("#in0").val();
+				var avuemail = $("#in1").val();  		 
+				var avupwd = $("#in2").val();
+				AV.User.logIn(avuuser, avupwd).then(function (loginedUser) {
+					login();
+				}, function (error) {
+					var user = new AV.User();
+					user.setUsername(avuuser);
+					user.setPassword(avupwd);
+					user.setEmail(avuemail);
+					user.signUp().then(function (loginedUser) {
+						login();
+					}, (function (error) {
+						alert(JSON.stringify(error));
+					}));
+				});
 				document.location.reload();
 			});
 		</script>
-		<script src="js/airtable-taskmain.js"></script>
+		<script src="js/av-taskmain.js"></script>
 		<script src="js/ptimer.js"></script>
 		<script src="js/btimer.js"></script>
 	</body>
