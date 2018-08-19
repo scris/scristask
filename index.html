@@ -177,16 +177,6 @@
 			//controller
 			$("#logintoggle").click(function(){
 				$("#login").show();
-				$("#reg").hide();
-				$("#taskmain").hide();
-				$("#btimer").hide();
-				$("#ptimer").hide();
-				$("#blankb").hide();
-				$("#blankp").hide();
-			});
-			$("#regtoggle").click(function(){
-				$("#login").hide();
-				$("#reg").show();
 				$("#taskmain").hide();
 				$("#btimer").hide();
 				$("#ptimer").hide();
@@ -197,17 +187,17 @@
 				$("#taskmain").show();
 				$("#btimer").toggle();
 				$("#login").hide();
-				$("#reg").hide();
 				$("#blankb").toggle();
 			});
 			$("#ptimertoggle").click(function(){
 				$("#taskmain").show();
 				$("#ptimer").toggle();
 				$("#login").hide();
-				$("#reg").hide();
 				$("#blankp").toggle();
 			});
-			
+			$("#regtoggle").click(function(){
+				window.location.href = "reg.html";
+			});
 			//leancloud-av
 			var APP_ID = 'C7SVWNehvavYoUH5cssIKYDH-MdYXbMMI';
 			var APP_KEY = 'nJ2QMhw8deT5QwNt40rjsaK7';
@@ -232,25 +222,7 @@
 					alert(JSON.stringify(error));
 				});
 			});
-			function signup() {
-			  var username = $('#regusername').val();
-			  var password = $('#regpassword').val();
-			  var email = $('regemail').val();
-			  var user = new AV.User();
-			  user.setUsername(username);
-			  user.setPassword(password);
-			  user.setEmail(email);
-			  console.log(user);
-			  user.signUp().then(function (loginedUser) {
-				document.location.reload();
-			  }, (function (error) {
-				alert(JSON.stringify(error));
-			  }));
-			};
-			$("regbtn").click(function(e){
-				e.preventDefault();
-				signup();
-			});
+
 		</script>
 		<script src="js/av-taskmain.js"></script>
 		<script src="js/ptimer.js"></script>
