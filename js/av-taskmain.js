@@ -191,65 +191,53 @@ $(function () {
 
 	$(".refresh").on("click", refresh);
 
-	var finishornot = false;
-	var fornot = false;
 
 	$(".todo-list").on("click", 'input[type="checkbox"]',
 		function () {
 			var li = $(this).parent().parent().parent();
 			li.toggleClass("danger");
 			li.toggleClass("animated flipInX");
-			base('Scris Task').find(li.data().id, function (err, record) {
-				if (err) {
-					console.error(err);
-					return;
-				}
-				finishornot = record.get('isfinished');
-				fornot = ((finishornot == true) ? false : true);
-				base('Scris Task').update(li.data().id, {
-					"isfinished": fornot
-				}, function (err, record1) {
-					if (err) {
-						console.error(err);
-						return;
-					}
-					console.log(record1.get('isfinished'));
-				});
+			var query = new AV.Query('task');
+			query.get(li.data().id).then(function (todo) {
+				todo.set("isfinished", !todo.get("isfinished"));
+				todo.save();
+				setToDone(li.data().id);
+				setTimeout(function () {
+						li.removeClass("animated flipInX");
+					},
+					500);
+			}, function (error) {
+				alert(JSON.stringify(error));
 			});
-			setToDone(li.data().id);
-			setTimeout(function () {
-					li.removeClass("animated flipInX");
-				},
-				500);
+
 		});
 
 	$(".todo-list").on("click", ".close",
 		function () {
 			var box = $(this).parent().parent();
-			base('Scris Task').destroy(box.data().id, function (err, deletedRecord) {
-				if (err) {
-					console.error(err);
-					return;
+			var todo = AV.Object.createWithoutData('task', box.data().id);
+			todo.destroy().then(function (success) {
+				if ($(".todo-list li").length == 1) {
+					box.removeClass("animated flipInX").addClass("animated bounceOutLeft");
+					setTimeout(function () {
+							box.remove();
+							$(".no-items").removeClass("hidden");
+							$(".refresh").addClass("hidden");
+						},
+						500);
+				} else {
+					box.removeClass("animated flipInX").addClass("animated bounceOutLeft");
+					setTimeout(function () {
+							box.remove();
+						},
+						500);
 				}
-				console.log('Deleted record', deletedRecord.id);
-			});
-			if ($(".todo-list li").length == 1) {
-				box.removeClass("animated flipInX").addClass("animated bounceOutLeft");
-				setTimeout(function () {
-						box.remove();
-						$(".no-items").removeClass("hidden");
-						$(".refresh").addClass("hidden");
-					},
-					500);
-			} else {
-				box.removeClass("animated flipInX").addClass("animated bounceOutLeft");
-				setTimeout(function () {
-						box.remove();
-					},
-					500);
-			}
 
-			deleteTodo(box.data().id)
+				deleteTodo(box.data().id)
+			}, function (error) {
+				alert(JSON.stringify(error));
+			});
+
 		});
 
 	$(".form-control").keypress(function (e) {
