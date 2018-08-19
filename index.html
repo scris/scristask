@@ -129,9 +129,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
 		
-		<div class="row" id="reg" style="display: none;">
+			<div class="row" id="reg" style="display: none;">
 				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
 					<div class="add-control">
 						<div class="form-group has-feedback">
@@ -155,6 +154,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	
 		<div class="footer">
@@ -208,7 +208,7 @@
 				$("#blankp").toggle();
 			});
 			
-			//lencloud-av
+			//leancloud-av
 			var APP_ID = 'C7SVWNehvavYoUH5cssIKYDH-MdYXbMMI';
 			var APP_KEY = 'nJ2QMhw8deT5QwNt40rjsaK7';
 			AV.init({
@@ -220,13 +220,9 @@
 			//localstorage
 			if(!window.localStorage){
 				alert("LocalStorage is currently unsupported, please update your browser.");
-			}else{
-				var storage=window.localStorage;
-				if(storage.getItem("scristaskapi") == null){
-					alert("Seems that you haven't logged in. Click OK to log in.");
-					setTimeout(function(){$("#settings").show();$("#taskmain").hide();},500);
-				}
- 			}
+			}
+			
+			//login
 			$("#loginbtn").click(function(){
 				var avuuser = $("#in1").val();		 
 				var avupwd = $("#in2").val();
@@ -240,8 +236,6 @@
 			  var username = $('#regusername').val();
 			  var password = $('#regpassword').val();
 			  var email = $('regemail').val();
-			  // LeanCloud - 注册
-			  // https://leancloud.cn/docs/leanstorage_guide-js.html#注册
 			  var user = new AV.User();
 			  user.setUsername(username);
 			  user.setPassword(password);
