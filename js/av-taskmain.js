@@ -217,7 +217,7 @@ $(function () {
 			}, function (error) {
 				alert(JSON.stringify(error));
 			});
-			formControl.focus();
+			//formControl.focus();
 			$(".form-control").val("");
 		});
 
