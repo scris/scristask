@@ -1,7 +1,7 @@
 # Scris Task
 One to-do list app that clean up tasks automatically every day.
 
-- Sync from device to device.
+- Sync from device to device.(with airtable)
 - Your data is on Airtable server, and your api key is storaged on your device, they're both secure.
 - Can be directly run from files (no need for localhost environment)
 - Well-designed (Some CSS is from a codepen project)
