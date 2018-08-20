@@ -1,22 +1,57 @@
 var pstorage = window.localStorage;
 var pplayer = $("#finishsound")[0];
 var pmtonstart;
-$("#pstart").click(function () {
-	pmaxtime = $("#ptime").val() * 60;
-	if (!/^\d+$/.test(pmaxtime)) {
-		pmaxtime = 52 * 60;
-	}
-	pmtonstart = pmaxtime;
-	pmaxstart -= pstorage.getItem("pusetime");
+$(function () {
 	pplayer.load();
-	$("#ppause").show(700);
+	if ((pstorage.getItem("pusetime") != null) && (pstorage.getItem("pusetime") != "null")) {
+		$("#blankp").show();
+		$("#ptimer").show();
+		$("#proj").val(pstorage.getItem("projname"));
+		$("#pminute").text(pstorage.getItem("pminute"));
+		$("#psecond").text(pstorage.getItem("psecond"));
+		$("#pclear").show();
+		$("#ptime").hide();
+		pmaxtime = pstorage.getItem("ptotal");
+		pmtonstart = pstorage.getItem("ptotal");
+	}
+	else{
+		$("#pclear").hide();
+	}
+});
+$("#pstart").click(function () {
+	if ((pstorage.getItem("pusetime") == null) || (pstorage.getItem("pusetime") == "null")) {
+		pmaxtime = $("#ptime").val() * 60;
+		if (!/^\d+$/.test(pmaxtime)) {
+			pmaxtime = 52 * 60;
+		}
+		pstorage.setItem("projname", $("#proj").val());
+		pstorage.setItem("ptotal", pmaxtime);
+		pmtonstart = pmaxtime;
+	}
+	else
+	{
+		pmaxtime -= pstorage.getItem("pusetime");
+	}
+	$("#ppause").show();
+	$("#pclear").show();
+	$("#pstart").hide();
+	$("#ptime").hide();
 	ptimer = setInterval("CountDown()", 1000);
 });
 $("#ppause").click(function () {
 	if ($("#ppause").val() == "Pause") pausyFunction();
 	else resumyFunction();
 });
-
+$("#pclear").click(function () {
+	$("#pstart").show();
+	$("#ptime").show();
+	$("#ppause").hide();
+	$("#pclear").hide();
+	$("#pminute").text("Timer haven't started 00");
+	$("#psecond").text("00");
+	clearInterval(ptimer);
+	pstorage.setItem("pusetime", null);
+});
 function CountDown() {
 	if (pmaxtime >= 0) {
 		pminutes = Math.floor(pmaxtime / 60);
@@ -24,6 +59,8 @@ function CountDown() {
 		$("#pminute").text(pminutes);
 		$("#psecond").text(pseconds);
 		pstorage.setItem("pusetime", pmtonstart - pmaxtime);
+		pstorage.setItem("pminute", pminutes);
+		pstorage.setItem("psecond", pseconds);
 		if (pmaxtime == 5 * 60) {
 			if (window.Notification) {
 				const notify1 = new Notification("5 minutes left");
@@ -38,8 +75,11 @@ function CountDown() {
 			const notify2 = new Notification("Time is up.");
 		}
 		alert("Time is up.");
-		pstorage.setItem("pusetime", 0);
-		$("#ppause").hide(700);
+		pstorage.setItem("pusetime", null);
+		$("#ppause").hide();
+		$("#pclear").hide();
+		$("#pstart").show();
+		$("#ptime").show();
 	}
 }
 
