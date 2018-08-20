@@ -10,6 +10,24 @@ var currentUser = AV.User.current();
 if (currentUser) {
 	$("#haventloggedin").hide();
 	$("#loggedin").show();
+	var avtask = AV.Object.extend('task');
+	var avnote = AV.Object.extend('note');
+	var query = new AV.Query('note');
+	query.equalTo('owner', AV.User.current());
+	query.first().then(function (data) {
+		$("#notearea").val(data.get("notecontent"));
+		$("noteid").val(data.id);
+	}, function (error) {
+		alert(JSON.stringify(error));
+	});
+
+	$('#notearea').live("keyup", function () {
+		var content = $("#notearea").val();
+		var noteid = $("#noteid").val();
+		var avnote = AV.Object.createWithoutData('note', noteid);
+		avnote.set('notecontent', content);
+		avnote.save();
+	});
 	loadr();
 } else {
 	$("#login").show();
@@ -39,29 +57,11 @@ $("#loggouttoggle").click(function () {
 	document.location.reload();
 });
 
-var avtask = AV.Object.extend('task');
-var avnote = AV.Object.extend('note');
 
 var deleter = function (record) {
 
 };
 
-var query = new AV.Query('note');
-query.equalTo('owner', AV.User.current());
-query.first().then(function (data) {
-	$("#notearea").val(data.get("notecontent"));
-	$("noteid").val(data.id);
-}, function (error) {
-	alert(JSON.stringify(error));
-});
-
-$('#notearea').live("keyup", function () {
-	var content = $("#notearea").val();
-	var noteid = $("#noteid").val();
-	var avnote = AV.Object.createWithoutData('note', noteid);
-	avnote.set('notecontent', content);
-	avnote.save();
-});
 
 //tasks
 var state = [];
@@ -390,4 +390,3 @@ $(document).ready(function () {
 		}
 	}
 });
-
