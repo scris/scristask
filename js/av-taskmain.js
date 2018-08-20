@@ -50,8 +50,8 @@ $("#loginbtn").click(function () {
 	});
 });
 
-$("#loggouttoggle").click(function () {
-	V.User.logOut();
+$("#logouttoggle").click(function () {
+	AV.User.logOut();
 	document.location.reload();
 });
 
