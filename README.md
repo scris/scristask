@@ -1,7 +1,7 @@
 # Scris Task
 One to-do list app that clean up tasks automatically every day.
 
-- Sync from device to device.(with airtable)
+- Sync from device to device with airtable 
 - Your data is on Airtable server, and your api key is storaged on your device, they're both secure.
 - Can be directly run from files (no need for localhost environment)
 - Well-designed (Some CSS is from a codepen project)
@@ -13,10 +13,6 @@ We have already announced a productive tool called Scris Efficiency 2 (aka Seffi
 
 Made by Dominik
 
-![scrismade](https://img.shields.io/badge/Made%20with%20love%20by-Scris%20Game%20Studio-33ccff.svg)
+This branch won't update later, plz use the master branch with leancloud-as-server sync.
 
-![dominikmade](https://img.shields.io/badge/Developed%20by-Dominik%20Qiu-brightgreen.svg)
-
-![rv](https://img.shields.io/github/release/scris/scristask.svg)
-
-![download-counting](https://img.shields.io/github/downloads/atom/atom/total.svg)
+If you are looking for a release package of the airtable-as-server version, plz download the 1.1.0.2 release.
