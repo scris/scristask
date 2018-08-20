@@ -15,15 +15,15 @@ function workCountDown() {
 		$("#minute").text("Worktime " + minutes);
 		$("#second").text(seconds);
 		if (maxtime == 5 * 60) {
-			alert("5 minutes left for working");
 			const notify3 = new Notification("5 minutes left for working");
+			alert("5 minutes left for working");
 		}
 		--maxtime;
 	} else {
 		player.play();
 		clearInterval(btimer);
-		alert("Worktime is up. Now let us have a break!");
 		const notify4 = new Notification("Worktime is up. Now let us have a break!");
+		alert("Worktime is up. Now let us have a break!");
 		maxtime = $("#breaktime").val() * 60;
 		if (!/^\d+$/.test(maxtime)) {
 			maxtime = 17 * 60;
@@ -42,7 +42,7 @@ function breakCountDown() {
 	} else {
 		player.play();
 		clearInterval(btimer);
-		alert("Now it is time for working.");
 		const notify5 = new Notification("Now it is time for working.");
+		alert("Now it is time for working.");
 	}
 }
