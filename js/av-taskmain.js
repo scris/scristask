@@ -20,8 +20,7 @@ if (currentUser) {
 	}, function (error) {
 		alert(JSON.stringify(error));
 	});
-
-	$('#notearea').live("keyup", function () {
+	$('#notearea').change(function () {
 		var content = $("#notearea").val();
 		var noteid = $("#noteid").val();
 		var avnote = AV.Object.createWithoutData('note', noteid);
