@@ -69,13 +69,7 @@ if (window.Notification) {
 var state = [];
 
 function setDefaultState() {
-	var id = generateID();
 	var baseState = {};
-	baseState[id] = {
-		status: "new",
-		id: id,
-		title: "This site uses LocalStorage to keep track of your tasks"
-	};
 	syncState(baseState);
 }
 

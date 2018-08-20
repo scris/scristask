@@ -11,6 +11,7 @@ $(function () {
 		$("#psecond").text(pstorage.getItem("psecond"));
 		$("#pclear").show();
 		$("#ptime").hide();
+		$("#ppause").hide();
 		pmaxtime = pstorage.getItem("ptotal");
 		pmtonstart = pstorage.getItem("ptotal");
 	}
