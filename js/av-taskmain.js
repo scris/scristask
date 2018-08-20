@@ -8,14 +8,20 @@ AV.init({
 });
 var currentUser = AV.User.current();
 if (currentUser) {
-	//nothing to show
+	$("#haventloggedin").hide();
+	$("#loggedin").show();
+	loadr();
 } else {
 	$("#login").show();
+	$("#haventloggedin").show();
+	$("#loggedin").hide();
 	$("#taskmain").hide();
 	$("#btimer").hide();
 	$("#ptimer").hide();
+	$("#note").hide();
 	$("#blankb").hide();
 	$("#blankp").hide();
+	$("#blankn").hide();
 }
 //login
 $("#loginbtn").click(function () {
@@ -28,6 +34,11 @@ $("#loginbtn").click(function () {
 	});
 });
 
+$("#loggouttoggle").click(function () {
+	V.User.logOut();
+	document.location.reload();
+});
+
 var avtask = AV.Object.extend('task');
 var avnote = AV.Object.extend('note');
 
@@ -35,6 +46,22 @@ var deleter = function (record) {
 
 };
 
+var query = new AV.Query('note');
+query.equalTo('owner', AV.User.current());
+query.first().then(function (data) {
+	$("#notearea").val(data.get("notecontent"));
+	$("noteid").val(data.id);
+}, function (error) {
+	alert(JSON.stringify(error));
+});
+
+$('#notearea').live("keyup", function () {
+	var content = $("#notearea").val();
+	var noteid = $("#noteid").val();
+	var avnote = AV.Object.createWithoutData('note', noteid);
+	avnote.set('notecontent', content);
+	avnote.save();
+});
 
 //tasks
 var state = [];
@@ -123,7 +150,7 @@ function addItem(text, status, id, noUpdate) {
 	}
 }
 
-function addeach(item, index){
+function addeach(item, index) {
 	addItem(item.get("taskname"), item.get("isfinished"), item.id, true);
 }
 
@@ -364,6 +391,3 @@ $(document).ready(function () {
 	}
 });
 
-
-//run loadr
-loadr();

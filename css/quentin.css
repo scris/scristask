@@ -450,6 +450,11 @@ svg {
   transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
+#notearea {
+	background-color:beige;
+	height: 225px;
+}
+
 .color {
     text-align: center;
     margin-bottom: -13px;
