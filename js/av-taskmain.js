@@ -16,7 +16,7 @@ if (currentUser) {
 	query.equalTo('owner', AV.User.current());
 	query.first().then(function (data) {
 		$("#notearea").val(data.get("notecontent"));
-		$("noteid").val(data.id);
+		$("#noteid").val(data.id);
 	}, function (error) {
 		alert(JSON.stringify(error));
 	});
