@@ -20,14 +20,14 @@ function CountDown() {
 		$("#pminute").text(pminutes);
 		$("#psecond").text(pseconds);
 		if (pmaxtime == 5 * 60) {
-			const notify1 = new Notification ("5 minutes left");
+			if (window.Notification) {const notify1 = new Notification ("5 minutes left");}
 			alert("5 minutes left");
 		}
 		--pmaxtime;
 	} else {
 		pplayer.play();
 		clearInterval(ptimer);
-		const notify2 = new Notification ("Time is up.");
+		if (window.Notification) {const notify2 = new Notification ("Time is up.");}
 		alert("Time is up.");
 		$("#ppause").hide(700);
 	}

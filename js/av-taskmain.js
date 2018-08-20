@@ -60,10 +60,11 @@ var deleter = function (record) {
 
 };
 
-Notification.requestPermission(function (permission) {
-      
-});
+if (window.Notification) {
+	Notification.requestPermission(function (permission) {
 
+	});
+}
 //tasks
 var state = [];
 
