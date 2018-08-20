@@ -28,7 +28,6 @@ if (currentUser) {
 		avnote.set('notecontent', content);
 		avnote.save();
 	});
-	loadr();
 } else {
 	$("#login").show();
 	$("#haventloggedin").show();
@@ -390,3 +389,8 @@ $(document).ready(function () {
 		}
 	}
 });
+
+//loadr
+if (currentUser) {
+	loadr();
+}
