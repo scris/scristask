@@ -8,6 +8,8 @@ One to-do list app that clean up tasks automatically every day.
 - Made by Scris Game Studio
 - May be meaningful to you
 - Project Timer and Break Timer on one page
+- Note feature
+- Notification on some of the browsers.
 
 We have already announced a productive tool called Scris Efficiency 2 (aka Seffi or 极效率2), so Scris Task is also called Scris Efficiency 3 (or 极效率3)
 
