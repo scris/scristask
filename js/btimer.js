@@ -2,7 +2,6 @@ var storage = window.localStorage;
 var player = $("#finishsound")[0];
 var bmtonstart;
 $(function () {
-	player.load();
 	if ((pstorage.getItem("busetime") != null) && (pstorage.getItem("busetime") != "null")) {
 		$("#blankb").show();
 		$("#btimer").show();
@@ -18,6 +17,7 @@ $(function () {
 	}
 });
 $("#starty").click(function () {
+player.load();
 	if ((pstorage.getItem("busetime") == null) || (pstorage.getItem("busetime") == "null")) {
 		maxtime = $("#worktime").val() * 60;
 		if (!/^\d+$/.test(maxtime)) {

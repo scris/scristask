@@ -2,7 +2,6 @@ var pstorage = window.localStorage;
 var pplayer = $("#finishsound")[0];
 var pmtonstart;
 $(function () {
-	pplayer.load();
 	if ((pstorage.getItem("pusetime") != null) && (pstorage.getItem("pusetime") != "null")) {
 		$("#blankp").show();
 		$("#ptimer").show();
@@ -20,6 +19,7 @@ $(function () {
 	}
 });
 $("#pstart").click(function () {
+pplayer.load();
 	if ((pstorage.getItem("pusetime") == null) || (pstorage.getItem("pusetime") == "null")) {
 		pmaxtime = $("#ptime").val() * 60;
 		if (!/^\d+$/.test(pmaxtime)) {
