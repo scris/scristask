@@ -38,6 +38,7 @@ if (currentUser) {
 	$("#blankb").hide();
 	$("#blankp").hide();
 	$("#blankn").hide();
+	$("#loadingbar").hide():
 }
 //login
 $("#loginbtn").click(function () {
@@ -121,7 +122,14 @@ function getState() {
 function addItem(text, status, id, noUpdate) {
 	var id = id ? id : generateID();
 	var c = (status === "done" || status === true) ? "danger" : "";
-	var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label><span class="checkbox-mask"></span><input type="checkbox" />' + text + "</label></div></li>";
+	if((itemVal.indexOf('[longterm]') >= 0) || (itemVal.indexOf('[plan]') >= 0) || (itemVal.indexOf('[routine]') >= 0))
+	{
+		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label>' + text + "</label></div></li>";
+	}
+	else
+	{
+		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label><span class="checkbox-mask"></span><input type="checkbox" />' + text + "</label></div></li>";
+	}
 
 	var isError = $(".form-control").hasClass("hidden");
 
@@ -156,9 +164,13 @@ var loadr = function () {
 	var month = myDate.getMonth() + 1;
 	var day = myDate.getDate();
 	var newDay = year + "-" + month + "-" + day;
+	var queryday = new AV.Query('task');
+	queryday.equalTo('owner', AV.User.current());
+	queryday.equalTo('day', newDay);
+	var querylongterm = new AV.Query('task');
+	querylongterm.equalTo('islongterm',true);
 	var query = new AV.Query('task');
-	query.equalTo('owner', AV.User.current());
-	query.equalTo('day', newDay);
+	query = AV.Query.and(queryday,querylongterm);
 	query.find().then(function (results) {
 		results.forEach(addeach);
 	}, function (error) {
@@ -207,6 +219,10 @@ $(function () {
 			var day = myDate.getDate();
 			var newDay = year + "-" + month + "-" + day;
 			todoFolder.set('day', newDay)
+			if((itemVal.indexOf('[longterm]') >= 0) || (itemVal.indexOf('[plan]') >= 0) || (itemVal.indexOf('[routine]') >= 0))
+				{
+					todoFolder.set('islongterm',true);
+				}
 			todoFolder.save().then(function (todo) {
 				addItem(itemVal, false, todo.id, true);
 			}, function (error) {
@@ -390,4 +406,5 @@ $(document).ready(function () {
 //loadr
 if (currentUser) {
 	loadr();
+	$("#loadingbar").hide():
 }
