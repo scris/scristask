@@ -54,6 +54,9 @@
 						</i>
 						Oops! Please enter name item.
 					</p>
+					<p class="text-center" id="loadingbar">
+						<h4>Loading tasks ……</h4>
+					</p>
 					<p class="no-items text-muted text-center hidden">
 						<i class="fa fa-ban">
 						</i>
@@ -90,17 +93,22 @@
 					<div id="psetting add-control">
 						<div class="form-group has-feedback">
 							<input type="text" placeholder="📒 The name of the project" id="proj" class="form-control">
-							<br>
+						</div>
+						<div class="form-group has-feedback">
 							<input type="text" placeholder="👨‍💻 Working Time/min" id="ptime" class="form-control">
 						</div>
 						<div class="form-group has-feedback">
-							<input type="button" id="pstart" class="form-control sbtn" value="Start Countdown"><br>
-							<input type="button" id="ppause" class="form-control sbtn" value="Pause"><br>
-							<input type="button" id="pclear" class="form-control sbtn" value="Reset">
+							<input type="button" id="pstart" class="form-control sbtn" value="Start Countdown">
 						</div>
+						<div class="form-group has-feedback">
+							<input type="button" id="ppause" class="form-control sbtn" value="Pause">
+						</div>
+						<div class="form-group has-feedback">
+							<input type="button" id="pclear" class="form-control sbtn" value="Reset">
 						</div>
 					</div>
 				</div>
+			</div>
 				
 			<div class="container" id="blankb" style="display: none;"></div>
 			
@@ -112,17 +120,19 @@
 						<span id="second">00</span>
 					</div>
 					<br>
-				<div id="setting add-control">
-					<div class="form-group has-feedback" id="inputy">
-						<input type="text" placeholder="💪 Working Time/min" id="worktime" class="form-control">
-						<br>
-						<input type="text" placeholder="🔌 Breaktime/min" id="breaktime" class="form-control">
-					</div>
-					<div class="form-group has-feedback">
-						<input type="button" id="starty" class="form-control sbtn" value="Start Workbreak Timer">
-						<br>
-						<input type="button" id="bclear" class="form-control sbtn" value="Reset Timer">
-					</div>
+					<div id="setting add-control">
+						<div class="form-group has-feedback" id="inputy">
+							<input type="text" placeholder="💪 Working Time/min" id="worktime" class="form-control">
+						</div>
+						<div class="form-group has-feedback">
+							<input type="text" placeholder="🔌 Breaktime/min" id="breaktime" class="form-control">
+						</div>
+						<div class="form-group has-feedback">
+							<input type="button" id="starty" class="form-control sbtn" value="Start Workbreak Timer">
+						</div>
+						<div class="form-group has-feedback">
+							<input type="button" id="bclear" class="form-control sbtn" value="Reset Timer">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -190,7 +200,8 @@
 			<source	src="ding.mp3"/>
 		</audio>
 
-	
+		<div class="container" id="blankatlast"></div>
+		
 		<script>
 			$("#loadingbar").show():
 			//controller
