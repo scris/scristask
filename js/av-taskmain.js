@@ -38,7 +38,7 @@ if (currentUser) {
 	$("#blankb").hide();
 	$("#blankp").hide();
 	$("#blankn").hide();
-	$("#loadingbar").hide():
+	$("#loadingbar").hide();
 }
 //login
 $("#loginbtn").click(function () {
