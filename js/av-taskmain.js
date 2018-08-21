@@ -406,5 +406,5 @@ $(document).ready(function () {
 //loadr
 if (currentUser) {
 	loadr();
-	$("#loadingbar").hide():
+	$("#loadingbar").hide();
 }
