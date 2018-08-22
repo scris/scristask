@@ -122,7 +122,7 @@ function getState() {
 function addItem(text, status, id, noUpdate) {
 	var id = id ? id : generateID();
 	var c = (status === "done" || status === true) ? "danger" : "";
-	if((itemVal.indexOf('[longterm]') >= 0) || (itemVal.indexOf('[plan]') >= 0) || (itemVal.indexOf('[routine]') >= 0))
+	if((text.indexOf('[longterm]') >= 0) || (text.indexOf('[plan]') >= 0) || (text.indexOf('[routine]') >= 0))
 	{
 		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label>' + text + "</label></div></li>";
 	}
@@ -218,11 +218,11 @@ $(function () {
 			var month = myDate.getMonth() + 1;
 			var day = myDate.getDate();
 			var newDay = year + "-" + month + "-" + day;
-			todoFolder.set('day', newDay)
+			todoFolder.set('day', newDay);
 			if((itemVal.indexOf('[longterm]') >= 0) || (itemVal.indexOf('[plan]') >= 0) || (itemVal.indexOf('[routine]') >= 0))
-				{
-					todoFolder.set('islongterm',true);
-				}
+			{
+				todoFolder.set('islongterm',true);
+			}
 			todoFolder.save().then(function (todo) {
 				addItem(itemVal, false, todo.id, true);
 			}, function (error) {
