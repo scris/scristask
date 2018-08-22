@@ -12,11 +12,12 @@ if (currentUser) {
 	$("#loggedin").show();
 	var avtask = AV.Object.extend('task');
 	var avnote = AV.Object.extend('note');
-	var query = new AV.Query('note');
+	setTimeout(function(){
+		var query = new AV.Query('note');
 	query.equalTo('owner', AV.User.current());
 	query.first().then(function (data) {
-	$("#notearea").val(data.get("notecontent"));
-	$("#noteid").val(data.id);
+		$("#notearea").val(data.get("notecontent"));
+		$("#noteid").val(data.id);
 	}, function (error) {
 		alert(JSON.stringify(error));
 	});
@@ -27,6 +28,7 @@ if (currentUser) {
 		avnote.set('notecontent', content);
 		avnote.save();
 	});
+	},800);
 } else {
 	$("#login").show();
 	$("#haventloggedin").show();
@@ -335,73 +337,7 @@ $(document).ready(function () {
 		addItem(todo.title, todo.status, todo.id, true);
 	});
 
-	var mins, secs, update;
 
-	init();
-
-	function init() {
-		(mins = 25),
-		(secs = 59);
-	}
-
-	set();
-
-	function set() {
-		$(".mins").text(mins);
-	}
-
-	$("#start").on("click", start_timer);
-	$("#reset").on("click", reset);
-	$("#inc").on("click", inc);
-	$("#dec").on("click", dec);
-
-	function start_timer() {
-
-		set();
-
-		$(".dis").attr("disabled", true);
-
-		$(".mins").text(--mins);
-		$(".separator").text(":");
-		update_timer();
-
-		update = setInterval(update_timer, 1000);
-	}
-
-	function update_timer() {
-		$(".secs").text(secs);
-		--secs;
-		if (mins == 0 && secs < 0) {
-			reset();
-		} else if (secs < 0 && mins > 0) {
-			secs = 59;
-			--mins;
-			$(".mins").text(mins);
-		}
-	}
-
-	function reset() {
-		clearInterval(update);
-		$(".secs").text("");
-		$(".separator").text("");
-		init();
-		$(".mins").text(mins);
-		$(".dis").attr("disabled", false);
-	}
-
-	function inc() {
-		mins++;
-		$(".mins").text(mins);
-	}
-
-	function dec() {
-		if (mins > 1) {
-			mins--;
-			$(".mins").text(mins);
-		} else {
-			alert("This is the minimum limit.");
-		}
-	}
 });
 
 //loadr
