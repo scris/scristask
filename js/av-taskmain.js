@@ -1,11 +1,3 @@
-//leancloud-av
-var APP_ID = 'C7SVWNehvavYoUH5cssIKYDH-MdYXbMMI';
-var APP_KEY = 'nJ2QMhw8deT5QwNt40rjsaK7';
-AV.init({
-	appId: APP_ID,
-	appKey: APP_KEY,
-	region: 'us'
-});
 var currentUser = AV.User.current();
 if (currentUser) {
 	$("#haventloggedin").hide();
