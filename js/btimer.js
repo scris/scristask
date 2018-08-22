@@ -55,7 +55,6 @@ function workCountDown() {
 			if (window.Notification) {
 				const notify3 = new Notification("5 minutes left for working");
 			}
-			alert("5 minutes left for working");
 		}
 		--maxtime;
 	} else {
@@ -64,7 +63,9 @@ function workCountDown() {
 		if (window.Notification) {
 			const notify4 = new Notification("Worktime is up. Now let us have a break!");
 		}
-		alert("Worktime is up. Now let us have a break!");
+		else{
+			alert("Worktime is up. Now let us have a break!");
+		}
 		storage.setItem("busetime", null);
 		maxtime = $("#breaktime").val() * 60;
 		if (!/^\d+$/.test(maxtime)) {
@@ -89,6 +90,8 @@ function breakCountDown() {
 		if (window.Notification) {
 			const notify5 = new Notification("Now it is time for working.");
 		}
-		alert("Now it is time for working.");
+		else{
+			alert("Now it is time for working.");
+		}
 	}
 }

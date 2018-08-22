@@ -66,7 +66,6 @@ function CountDown() {
 			if (window.Notification) {
 				const notify1 = new Notification("5 minutes left");
 			}
-			alert("5 minutes left");
 		}
 		--pmaxtime;
 	} else {
@@ -75,7 +74,9 @@ function CountDown() {
 		if (window.Notification) {
 			const notify2 = new Notification("Time is up.");
 		}
-		alert("Time is up.");
+		else{
+			alert("Time is up.");
+		}
 		pstorage.setItem("pusetime", null);
 		$("#ppause").hide();
 		$("#pclear").hide();
