@@ -15,8 +15,8 @@ if (currentUser) {
 	var query = new AV.Query('note');
 	query.equalTo('owner', AV.User.current());
 	query.first().then(function (data) {
-		$("#notearea").val(data.get("notecontent"));
-		$("#noteid").val(data.id);
+	$("#notearea").val(data.get("notecontent"));
+	$("#noteid").val(data.id);
 	}, function (error) {
 		alert(JSON.stringify(error));
 	});
@@ -170,7 +170,7 @@ var loadr = function () {
 	var querylongterm = new AV.Query('task');
 	querylongterm.equalTo('islongterm',true);
 	var query = new AV.Query('task');
-	query = AV.Query.and(queryday,querylongterm);
+	query = AV.Query.or(queryday,querylongterm);
 	query.find().then(function (results) {
 		results.forEach(addeach);
 	}, function (error) {
