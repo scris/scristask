@@ -168,6 +168,7 @@ var loadr = function () {
 	queryday.equalTo('owner', AV.User.current());
 	queryday.equalTo('day', newDay);
 	var querylongterm = new AV.Query('task');
+	querylongterm.equalTo('owner', AV.User.current());
 	querylongterm.equalTo('islongterm',true);
 	var query = new AV.Query('task');
 	query = AV.Query.or(queryday,querylongterm);
