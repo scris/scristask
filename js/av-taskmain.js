@@ -118,11 +118,11 @@ function addItem(text, status, id, noUpdate) {
 	var c = (status === "done" || status === true) ? "danger" : "";
 	if((text.indexOf('[longterm]') >= 0) || (text.indexOf('[plan]') >= 0) || (text.indexOf('[routine]') >= 0))
 	{
-		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label>' + text + "</label></div></li>";
+		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label class="itemlabel">' + text + "</label></div></li>";
 	}
 	else
 	{
-		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label><span class="checkbox-mask"></span><input type="checkbox" />' + text + "</label></div></li>";
+		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label class="itemlabel"><span class="checkbox-mask"></span><input type="checkbox" />' + text + "</label></div></li>";
 	}
 
 	var isError = $(".form-control").hasClass("hidden");
@@ -138,6 +138,21 @@ function addItem(text, status, id, noUpdate) {
 
 	$(".no-items").addClass("hidden");
 
+	if((text.indexOf('[easy]') >= 0))
+	{
+		$(".itemlabel").addClass("labeleasy");
+	}
+	
+	if((text.indexOf('[try]') >= 0))
+	{
+		$(".itemlabel").addClass("labeltry");
+	}
+	
+	if((text.indexOf('[must]') >= 0))
+	{
+		$(".itemlabel").addClass("labelmust");
+	}
+	
 	setTimeout(function () {
 			$(".todo-list li").removeClass("animated flipInX");
 		},

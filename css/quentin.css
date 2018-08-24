@@ -460,6 +460,18 @@ svg {
     margin-bottom: -13px;
     margin-top: 10px;
 }
+
+.labeleasy {
+	color: #3ABB37;
+}
+
+.labeltry {
+	color: #198DF3;
+}
+
+.labelmust {
+	color: #E9383B;
+}
 /* .col-xs-offset-3 {
     margin-left: 10%;
 }
