@@ -118,7 +118,7 @@ function addItem(text, status, id, noUpdate) {
 	var c = (status === "done" || status === true) ? "danger" : "";
 	if((text.indexOf('[longterm]') >= 0) || (text.indexOf('[plan]') >= 0) || (text.indexOf('[routine]') >= 0))
 	{
-		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label class="itemlabel">' + text + "</label></div></li>";
+		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '" id="item' + id + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label class="itemlabel">' + text + "</label></div></li>";
 	}
 	else
 	{
