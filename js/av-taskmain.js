@@ -140,17 +140,17 @@ function addItem(text, status, id, noUpdate) {
 
 	if((text.indexOf('[easy]') >= 0))
 	{
-		$("item" + id).children(".itemlabel").addClass("labeleasy");
+		$("item" + id).find(".itemlabel").addClass("labeleasy");
 	}
 	
 	if((text.indexOf('[try]') >= 0))
 	{
-		$("item" + id).children(".itemlabel").addClass("labeltry");
+		$("item" + id).find(".itemlabel").addClass("labeltry");
 	}
 	
 	if((text.indexOf('[must]') >= 0))
 	{
-		$("item" + id).children(".itemlabel").addClass("labelmust");
+		$("item" + id).find(".itemlabel").addClass("labelmust");
 	}
 	
 	setTimeout(function () {
