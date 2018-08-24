@@ -122,7 +122,7 @@ function addItem(text, status, id, noUpdate) {
 	}
 	else
 	{
-		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label class="itemlabel"><span class="checkbox-mask"></span><input type="checkbox" />' + text + "</label></div></li>";
+		var item = '<li data-id="' + id + '" class="animated flipInX ' + c + '" id="item' + id + '"><div class="checkbox"><span class="close"><i class="fa fa-times"></i></span><label class="itemlabel"><span class="checkbox-mask"></span><input type="checkbox" />' + text + "</label></div></li>";
 	}
 
 	var isError = $(".form-control").hasClass("hidden");
@@ -140,23 +140,22 @@ function addItem(text, status, id, noUpdate) {
 
 	if((text.indexOf('[easy]') >= 0))
 	{
-		$(".itemlabel").addClass("labeleasy");
+		$("item" + id).children(".itemlabel").addClass("labeleasy");
 	}
 	
 	if((text.indexOf('[try]') >= 0))
 	{
-		$(".itemlabel").addClass("labeltry");
+		$("item" + id).children(".itemlabel").addClass("labeltry");
 	}
 	
 	if((text.indexOf('[must]') >= 0))
 	{
-		$(".itemlabel").addClass("labelmust");
+		$("item" + id).children(".itemlabel").addClass("labelmust");
 	}
 	
 	setTimeout(function () {
 			$(".todo-list li").removeClass("animated flipInX");
-		},
-		500);
+	},500);
 
 	if (!noUpdate) {
 		pushToState(text, "new", id);
