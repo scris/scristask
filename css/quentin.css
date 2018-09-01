@@ -472,6 +472,14 @@ svg {
 .labelmust {
 	color: #E9383B;
 }
+
+.labellongterm {
+	font-style: italic;
+}
+
+.labelplan {
+	color: slategray;
+}
 /* .col-xs-offset-3 {
     margin-left: 10%;
 }
