@@ -21,6 +21,8 @@ We have already announced a productive tool called Scris Efficiency 2 (aka Seffi
 ![rv](https://img.shields.io/github/release/scris/scristask.svg)
 
 ![download-counting](https://img.shields.io/github/downloads/atom/atom/total.svg)
+### To use this branch, download release 1.3.1
+
 
 ### If you wanna copy it to your server or you find the task.scris.top server has ran out of flow
 1. Fork the proj
