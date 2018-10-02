@@ -5,3 +5,6 @@
 ## Build Setup
 
 the same as building <https://github.com/ScrisStudio/linx.vue>
+
+---
+It was not finished yet.
