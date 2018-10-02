@@ -1,253 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Scris Task</title>
-		<script src="js/jquery-3.3.1.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-		<script src="js/av-min.js"></script>
-		<meta name="viewport" content="minimal-ui,width=device-width"/>	
- 		<link rel="apple-touch-icon" href="task.png">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="white">
-		<link rel="stylesheet" href="css/reset.min.css">
-		<link rel="stylesheet prefetch" href="css/bootstrap.min.css">
-		<link rel="stylesheet prefetch" href="css/animate.min.css">
-		<link rel="stylesheet" href="css/quentin.css">
-		<script type="text/javascript" src="signup/initLeanCloud.js"></script>
-		<style>
-			@font-face{
-				font-family: 'vffree72';
-				src: url('fonts/vffree72.svg'),
-					 url('fonts/vffree72.woff');
-			}
-
-			body {
-				background: #fff;
-				font: 14px 'vffree72', sans-serif;
-			}
-			
-			#starty, #pstart, #ppause, #loginbtn, #regbtn
-			{
-			    cursor: pointer;
-			}
-		</style>
-	</head>
-	<body class="body">
-		<div class="container">
-			<div class="today">
-			</div>
-	
-			<div class="row" id="taskmain">
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="text" class="form-control" placeholder="✍️ Add item..." />
-							<i class="fa fa-plus form-control-feedback add-btn" title="Add item">
-							</i>
-						</div>
-					</div>
-					<p class="err text-danger text-center hidden">
-						<i class="fa fa-warning">
-						</i>
-						Oops! Please enter name item.
-					</p>
-					<h4 class="text-center" id="loadingbar">
-						Loading tasks ……
-					</h4>
-					<p class="no-items text-muted text-center hidden">
-						<i class="fa fa-ban">
-						</i>
-					</p>
-					<ul class="todo-list">
-					</ul>
-				</div>
-			</div>
-			
-			<div class="container" id="blankn"></div>
-			
-			<div class="row" id="note">
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<textarea type="text" id="notearea" placeholder="Enter Note (will be stored on the server forerver……)" class="form-control sbtn"></textarea>
-							<span id="noteid" style="display: none;"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-							
-			<div class="container" id="blankp" style="display: none;"></div>
-			
-			<div class="row" id="ptimer" style="display: none;">
-   
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3 pclock">
-						<div id="pomotoro" class="add-control">
-							<span id="pminute">Timer haven't started 00</span>
-							<span>:</span>
-							<span id="psecond">00</span>
-						</div>
-						<br>
-					<div id="psetting" class="add-control">
-						<div class="form-group has-feedback">
-							<input type="text" placeholder="📒 The name of the project" id="proj" class="form-control">
-						</div>
-						<div class="form-group has-feedback">
-							<input type="text" placeholder="👨‍💻 Working Time/min" id="ptime" class="form-control">
-						</div>
-						<div class="form-group has-feedback">
-							<input type="button" id="pstart" class="form-control sbtn" value="Start Countdown">
-						</div>
-						<div class="form-group has-feedback">
-							<input type="button" id="ppause" class="form-control sbtn" value="Pause">
-						</div>
-						<div class="form-group has-feedback">
-							<input type="button" id="pclear" class="form-control sbtn" value="Reset">
-						</div>
-					</div>
-				</div>
-			</div>
-				
-			<div class="container" id="blankb" style="display: none;"></div>
-			
-			<div class="row" id="btimer" style="display: none;">
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3 pclock">
-					<div id="pomotoro" class="add-control">
-						<span id="minute">Timer haven't started 00</span>
-						<span>:</span>
-						<span id="second">00</span>
-					</div>
-					<br>
-					<div id="setting" class="add-control">
-						<div class="form-group has-feedback" id="inputy">
-							<input type="text" placeholder="💪 Working Time/min" id="worktime" class="form-control">
-						</div>
-						<div class="form-group has-feedback">
-							<input type="text" placeholder="🔌 Breaktime/min" id="breaktime" class="form-control">
-						</div>
-						<div class="form-group has-feedback">
-							<input type="button" id="starty" class="form-control sbtn" value="Start Workbreak Timer">
-						</div>
-						<div class="form-group has-feedback">
-							<input type="button" id="bclear" class="form-control sbtn" value="Reset Timer">
-						</div>
-					</div>
-				</div>
-			</div>
-				
-			<div class="row" id="login" style="display: none;">
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="username" class="form-control" id="in1" placeholder="📛 User Name" required autofocus/>
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="password" class="form-control" id="in2" placeholder="🤫 Your password" required/>
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="button" id="loginbtn" value="Log in" class="form-control sbtn">
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<div class="row" id="reg" style="display: none;">
-				<div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="username" class="form-control" id="regusername" placeholder="📛 User Name" required autofocus/>
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="email" class="form-control" id="regemail" placeholder="📮 Email Address" required/>
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="password" class="form-control" id="regpassword" placeholder="🤫 Your password" required/>
-						</div>
-					</div>
-					<div class="add-control">
-						<div class="form-group has-feedback">
-							<input type="button" id="regbtn" value="Register" class="form-control sbtn">
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-	
-		<div class="footer">
-			<h4>
-				Copyright &copy; 2015-2018 Scris Studio.<br><br><br>
-				Based on a project from <a href="http://quentincolus.com/about.html">Quentin</a>.<br><br><br>
-				Every task here will soon be vanished tomorrow,<br><br><br>
-				if you don’t put [longterm] [plan] or [routine] in front of your task's name.<br><br><br>
-				You can also use <font class="labeleasy">[easy]</font> <font class="labeltry">[try]</font> or <font class="labelmust">[must]</font>.<br><br><br><br>
-				<span id="haventloggedin"><a id="regtoggle">Register</a></span><span id="loggedin"><a id="logouttoggle">Log out</a> | <a id="ptimertoggle">Project Timer</a> | <a id="btimertoggle">Work &amp; Break Timer</a></span> | <a href="https://github.com/scris/scristask/" target="_self">Github</a> | <a>1.3.1</a>
-				<br><br><br>
-			</h4>
-		</div>
-		
-	
-		<audio id="finishsound">
-			<source	src="ding.mp3"/>
-		</audio>
-
-		<div class="container" id="blankatlast"></div>
-		
-		<script>
-			$("#loadingbar").show();
-			//controller
-			$("#logintoggle").click(function(){
-				$("#login").show();
-				$("#taskmain").hide();
-				$("#btimer").hide();
-				$("#ptimer").hide();
-				$("#note").hide();
-				$("#blankb").hide();
-				$("#blankp").hide();
-				$("#blankn").hide();
-			});
-			$("#btimertoggle").click(function(){
-				$("#taskmain").show();
-				$("#note").show();
-				$("#btimer").toggle();
-				$("#login").hide();
-				$("#blankb").toggle();
-				$("#blankn").show();
-			});
-			$("#ptimertoggle").click(function(){
-				$("#taskmain").show();
-				$("#note").show();
-				$("#ptimer").toggle();
-				$("#login").hide();
-				$("#blankp").toggle();
-				$("#blankn").show();
-			});
-			$("#regtoggle").click(function(){
-				window.location.href = "/signup/signup.html";
-			});
-			
-			//localstorage
-			if(!window.localStorage){
-				alert("LocalStorage is currently unsupported, please update your browser.");
-			}
-			
-		
-
-		</script>
-		<script src="js/av-taskmain.js"></script>
-		<script src="js/ptimer.js"></script>
-		<script src="js/btimer.js"></script>
-		<script>
-			$("#loadingbar").hide();
-		</script>
-	</body>
-
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="minimal-ui,width=device-width"/>
+    <link rel="apple-touch-icon" href="./task.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/123493/46822/5ba7140af629d80b5c293dd6.css' rel='stylesheet' type='text/css' />
+    <title>Scris Task</title>
+    <style>
+        @media screen and (orientation:landscape) {
+          #container {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateY(-30%);
+            transform: translateX(-50%);
+            text-align: center;
+          }
+          #rqdiv {
+            font-size: 36px;
+          }
+        }
+        
+        @media screen and (orientation:portrait) {
+          #container {
+            position: absolute;
+            top: 4%;
+            left: 50%;
+            transform: translateY(-30%);
+            transform: translateX(-50%);
+            text-align: center;
+          }
+          #rqdiv {
+            font-size: 28px;
+          }
+        }
+        body {
+          background-color: #fdfdfd;
+          background-image: url(https://picnicss.com/web/img/optimised.svg);
+          background-repeat: no-repeat;
+          background-position-x: center;
+          background-position-y: 100%;
+          background-attachment: fixed;
+          background-size: 100% auto;
+          font-family: 'Aclonica';
+        }
+        #today {
+          align-content: center;
+          text-align: center;
+        }
+        a:link {
+          color: rgb(168, 168, 168);
+          text-decoration: none;
+        }
+        a:visited {
+          color: rgb(114, 114, 114);
+          text-decoration: none;
+        }
+        a:hover {
+          color: rgb(179, 179, 179);
+          text-decoration: underline;
+        }
+        a:active {
+          color: rgb(0, 0, 0);
+          text-decoration: underline;
+        }
+        .text {
+          font-size: 14px;
+        }
+        .item {
+          padding: 18px 0;
+        }
+        .box-card {
+          width: 480px;
+        }
+        .task-card {
+          width: 420px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="container"><div id="app"></div></div>
+    <!-- built files will be auto injected -->
+  </body>
 </html>

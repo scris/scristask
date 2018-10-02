@@ -1,0 +1,21 @@
+{
+  "name": "Scris Task",
+  "version": "1.10.0",
+  "description": "The desktop version of Scris Task",
+  "main": "electron.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/scris/scristask",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Dominik Qiu",
+  "devDependencies": {
+    "electron": "^3.0.0"
+  }
+}
