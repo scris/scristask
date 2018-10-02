@@ -2,7 +2,7 @@
 One to-do list app that clean up tasks automatically every day.
 
 - Sync from device to device.
-- Your data is on Airtable server, and your api key is storaged on your device, they're both secure.
+- Your data is on Leancloud server, it's secure.
 - Can be directly run from files (no need for localhost environment)
 - Well-designed (Some CSS is from a codepen project)
 - Made by Scris Game Studio
@@ -19,8 +19,6 @@ We have already announced a productive tool called Scris Efficiency 2 (aka Seffi
 ![dominikmade](https://img.shields.io/badge/Developed%20by-Dominik%20Qiu-brightgreen.svg)
 
 ![rv](https://img.shields.io/github/release/scris/scristask.svg)
-
-![download-counting](https://img.shields.io/github/downloads/atom/atom/total.svg)
 
 ### If you wanna copy it to your server or you find the task.scris.top server has ran out of flow
 1. Fork the proj
