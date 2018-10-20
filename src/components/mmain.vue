@@ -41,10 +41,7 @@ import taskitem from '../components/taskitem.vue'
 
 
 
-if(AV.User.current){
-  
-	
-}else{
+if(!AV.User.current) {
   this.$router.push('register'); 
 }
 
@@ -69,6 +66,10 @@ export default {
   },
   methods: {
     init() {
+      if(!AV.User.current) {
+        this.$router.push('register'); 
+      }
+      
       var weekday = new Array(7);
       var weekday = new Array(7);
       weekday[0] = "Sunday 😊";
