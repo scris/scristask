@@ -38,6 +38,7 @@ import AV from 'leancloud-storage';
 import timer from '../components/timer.vue'
 import breaktimer from '../components/breaktimer.vue'
 import taskitem from '../components/taskitem.vue'
+import { log } from 'util';
 
 
 
@@ -64,8 +65,11 @@ export default {
       ],
     };
   },
+  mounted: function(){
+    this.initfunc();
+  },
   methods: {
-    init() {
+    initfunc() {
       if(!AV.User.current) {
         this.$router.push('register'); 
       }
@@ -79,7 +83,8 @@ export default {
       weekday[4] = "Thursday 😙";
       weekday[5] = "Friday 😜";
       weekday[6] = "Saturday 😇";
-      var n = weekday[d.getDay()];
+      var dd = new Date();
+      var n = weekday[dd.getDay()];
       var randomWordArray = Array("Wow, it's ", "Hey there, it's ", "Happy ", "It's currently ", "Awesome, it's ", "Have a nice ", "Happy splendid ", "Enjoy your ", "What a good day, it's ");
       var randomWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
       this.today = randomWord + n;
@@ -99,13 +104,14 @@ export default {
       var query = new AV.Query('task');
       query = AV.Query.or(queryday,querylongterm);
       query.find().then(function (results) {
-        results.forEach(this.addeach);
+        //console.log(results);
+        results.forEach(function (itemm) {
+          //console.log(item);
+          additem(itemm.get("taskname"), itemm.get("isfinished"), itemm.id, true);
+        });
       }, function (error) {
         alert(JSON.stringify(error));
       });
-    },
-    addeach() {
-      additem(item.get("taskname"), item.get("isfinished"), item.id, true);
     },
     additem(text, status, id, noUpdate) {
 			this.todos.push({
@@ -140,13 +146,13 @@ export default {
     },
     deletetask(taskid) {
       var itodo = AV.Object.createWithoutData('task', taskid);
-      itodo.destroy().then(function (success)){
+      itodo.destroy().then(function (success){
         this.todos = this.todos.filter(todo => {
           return todo.id !== taskid
         })
       }, function (error) {
         alert(JSON.stringify(error));
-      }
+      });
     },
     logout() {
       this.$router.push('register'); 
