@@ -105,7 +105,7 @@ export default {
       query = AV.Query.or(queryday,querylongterm);
       query.find().then(function (results) {
         //console.log(results);
-        results.forEach(function (itemm) {
+        results.forEach(function (itemm, index) {
           //console.log(item);
           additem(itemm.get("taskname"), itemm.get("isfinished"), itemm.id, true);
         });
