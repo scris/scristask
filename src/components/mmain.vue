@@ -61,7 +61,10 @@ export default {
       today: "Wow, it is Sunday! Isn't it?",
       entertask: '',
       todos: [
-      
+        {
+          id: "5b3ac",
+          title: "Fuji"
+        },
       ],
     };
   },
@@ -69,6 +72,15 @@ export default {
     this.initfunc();
   },
   methods: {
+    additem(text, status, id, noUpdate) {
+			this.todos.push({
+				id: id,
+				title: text
+      });
+    },
+    addeach(item, index) {
+      additem(item.get("taskname"), item.get("isfinished"), item.id, true);
+    },
     initfunc() {
       if(!AV.User.current) {
         this.$router.push('register'); 
@@ -104,20 +116,10 @@ export default {
       var query = new AV.Query('task');
       query = AV.Query.or(queryday,querylongterm);
       query.find().then(function (results) {
-        //console.log(results);
-        results.forEach(function (itemm, index) {
-          //console.log(item);
-          additem(itemm.get("taskname"), itemm.get("isfinished"), itemm.id, true);
-        });
+        results.forEach(addeach);
       }, function (error) {
         alert(JSON.stringify(error));
       });
-    },
-    additem(text, status, id, noUpdate) {
-			this.todos.push({
-				id: id,
-				title: text
-			})
     },
     addtask() {
       const trimmed = this.entertask.trim()
@@ -138,7 +140,7 @@ export default {
           todoFolder.set('islongterm',true);
         }
         todoFolder.save().then(function (itodo) {
-          additem(itemVal, false, itodo.id, true);
+          additem(itodo.get("taskname"), false, itodo.id, true);
         }, function (error) {
           alert(JSON.stringify(error));
         });

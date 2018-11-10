@@ -1,7 +1,7 @@
 <template>
   <el-alert
 		:title="todo.title"
-		@close="$emit('delete',todo.id)"> </el-alert>
+		@close="$emit('delete', todo.id)"> </el-alert>
 </template>
 
 <script>
