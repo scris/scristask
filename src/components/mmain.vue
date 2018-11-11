@@ -72,6 +72,7 @@ export default {
     this.initfunc();
   },
   methods: {
+    //https://github.com/zy343134464/vue-todolist/blob/master/app.js
     additem(text, status, id, noUpdate) {
 			this.todos.push({
 				id: id,
@@ -116,7 +117,7 @@ export default {
       var query = new AV.Query('task');
       query = AV.Query.or(queryday,querylongterm);
       query.find().then(function (results) {
-        results.forEach(addeach);
+        results.forEach(this.addeach);
       }, function (error) {
         alert(JSON.stringify(error));
       });
@@ -140,7 +141,8 @@ export default {
           todoFolder.set('islongterm',true);
         }
         todoFolder.save().then(function (itodo) {
-          additem(itodo.get("taskname"), false, itodo.id, true);
+          //todos.push(itodo.toJSON());
+          //additem(itodo.get("taskname"), false, itodo.id, true);
         }, function (error) {
           alert(JSON.stringify(error));
         });
