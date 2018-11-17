@@ -19,7 +19,7 @@ export default new Router({
       component: register,
     },
     {
-      path: '/main',
+      path: '/list',
       name: 'mmain',
       component: mmain,
     },

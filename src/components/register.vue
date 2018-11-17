@@ -53,7 +53,16 @@ export default {
         note.set('owner', AV.User.current());
         note.set('notecontent','');
         note.save().then(function (todo) {
-          that.$router.push('main'); 
+          
+        }, function (error) {
+          alert(JSON.stringify(error));
+        });
+        var avtask = AV.Object.extend('tasktext');
+        var task = new avtask();
+        task.set('owner', AV.User.current());
+        task.set('val','');
+        task.save().then(function (todo) {
+          that.$router.push('list'); 
         }, function (error) {
           alert(JSON.stringify(error));
         });
@@ -64,7 +73,7 @@ export default {
     login(){
       var that = this;
       AV.User.logIn(that.email, that.pwd).then(function (loginedUser) {
-        that.$router.push('main'); 
+        that.$router.push('list'); 
       }, function (error) {
         alert(JSON.stringify(error));
       });
