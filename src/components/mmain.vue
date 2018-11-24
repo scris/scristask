@@ -57,7 +57,7 @@ export default {
       today: "Wow, it is Sunday! Isn't it?",
       entertask: '',
       starttime: '',
-      lastfor: '',
+      lastfor: 0,
       todos: [],
       mtype: 'text',
       mplshldr: 'Click to Add a Task',
@@ -117,7 +117,7 @@ export default {
       var eachline = this.itemval.split("\n");
       var ataskname = eachline[0].trim();
       var astarttime = eachline[1].trim();
-      var alastfor = eachline[2].trim();
+      var alastfor = Number(eachline[2].trim());
 			if (ataskname) {
         var itemVal = ataskname;
 				var todoFolder = new avtask();
