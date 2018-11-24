@@ -114,7 +114,7 @@ export default {
       });
     },
     addtask() {
-      var eachline = line.split("\n");
+      var eachline = this.itemval.split("\n");
       var ataskname = eachline[0].trim();
       var astarttime = eachline[1].trim();
       var alastfor = eachline[2].trim();
@@ -143,7 +143,7 @@ export default {
     },
     mtypeArea() {
       this.mtype = 'textarea';
-      this.mplshldr = 'First Line: Task Name \nSecond Line: When should the Task Starts (e.g. 08:15) \nThird Line: How Long is the Task expected to last';
+      this.mplshldr = 'First Line: Task Name \nSecond Line: When should the Task Starts (e.g. 08:15) \nThird Line: How Many Minutes is the Task Expected to Last (e.g. 30)';
       this.entertask = '';
       this.mvsblty = 'visibility:visible';
     },
