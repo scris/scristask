@@ -6,8 +6,10 @@
     <el-card class="box-card" shadow="hover" id="taskmain">
       <el-row>
         <el-col>
-          <el-input placeholder="Task Name (Enter to Add)" 
-            v-model="entertask" @keyup.enter.native="addtask" clearable> </el-input>
+          <el-input autosize id="mval" :type="mtype" :placeholder="mplshldr" 
+            v-model="entertask" @focus="mtypeArea" clearable> </el-input>
+          <el-button class="mbtn" @click="modify" :style="mvsblty" type="success" icon="el-icon-circle-check">Done</el-button>
+          <el-button class="mbtn" @click="mtypeLine" :style="mvsblty" type="danger" icon="el-icon-circle-close">Close without Saving</el-button>
         </el-col>
       </el-row>
       <el-row>
@@ -21,12 +23,6 @@
           </el-alert>
         </el-col>
       </el-row>
-		</el-card>
-    <el-card class="box-card" shadow="hover" id="ttimer">
-			<timer></timer>
-		</el-card>
-    <el-card class="box-card" shadow="hover" id="ptimer">
-			<breaktimer></breaktimer>
 		</el-card>
     <a class="today" @click="logout">Log out</a>
 		<br><br>
@@ -60,22 +56,26 @@ export default {
     return {
       today: "Wow, it is Sunday! Isn't it?",
       entertask: '',
+      starttime: '',
+      lastfor: '',
       todos: [],
+      mtype: 'text',
+      mplshldr: 'Click to Add a Task',
+      mvsblty: 'visibility:hidden;height:0px;margin:0px;padding:0px',
+      itemval: '',
     };
   },
   mounted: function(){
     this.initfunc();
   },
   methods: {
-    //https://github.com/zy343134464/vue-todolist/blob/master/app.js
-    additem(text, status, id, noUpdate) {
+    additem(text, id, starttime, lastfor) {
 			this.todos.push({
 				id: id,
-				title: text
+				title: text,
+        starttime: starttime,
+        lastfor: lastfor
       });
-    },
-    addeach(item, index) {
-      additem(item.get("taskname"), item.get("isfinished"), item.id, true);
     },
     initfunc() {
       if(!AV.User.current) {
@@ -104,7 +104,9 @@ export default {
         results.forEach((taskr) => {
           thatq.todos.push({
             id: taskr.id,
-            title: taskr.get("taskname")
+            title: taskr.get("taskname"),
+            starttime: taskr.get("starttime"),
+            lastfor: taskr.get("lastfor")
           });
         });
       }, function (error) {
@@ -112,30 +114,44 @@ export default {
       });
     },
     addtask() {
-      const trimmed = this.entertask.trim()
-			if (trimmed) {
-        var itemVal = trimmed;
+      var eachline = line.split("\n");
+      var ataskname = eachline[0].trim();
+      var astarttime = eachline[1].trim();
+      var alastfor = eachline[2].trim();
+			if (ataskname) {
+        var itemVal = ataskname;
 				var todoFolder = new avtask();
         todoFolder.set('taskname', itemVal);
         todoFolder.set('isfinished', false);
         todoFolder.set('owner', AV.User.current());
-        var myDate = new Date();
-        var year = myDate.getFullYear();
-        var month = myDate.getMonth() + 1;
-        var day = myDate.getDate();
-        var newDay = year + "-" + month + "-" + day;
-        todoFolder.set('day', newDay);
-        if((itemVal.indexOf('[longterm]') >= 0) || (itemVal.indexOf('[plan]') >= 0) || (itemVal.indexOf('[routine]') >= 0))
-        {
-          todoFolder.set('islongterm',true);
-        }
+        todoFolder.set('starttime', astarttime);
+        todoFolder.set('lastfor', alastfor);
         var thatt = this;
         todoFolder.save().then(function (itodo) {
-          thatt.additem(itodo.get("taskname"), false, itodo.id, true);
+          thatt.additem(itodo.get("taskname"), itodo.id, itodo.get("starttime"), itodo.get("lastfor"));
         }, function (error) {
           alert(JSON.stringify(error));
         });
       }
+    },
+    modify() {
+			if (this.entertask) {
+        this.itemval = this.entertask;
+        this.mtypeLine();
+        this.addtask();
+      }
+    },
+    mtypeArea() {
+      this.mtype = 'textarea';
+      this.mplshldr = 'First Line: Task Name \nSecond Line: When should the Task Starts (e.g. 08:15) \nThird Line: How Long is the Task expected to last';
+      this.entertask = '';
+      this.mvsblty = 'visibility:visible';
+    },
+    mtypeLine() {
+      this.mtype = 'text';
+      this.mplshldr = 'Click to Add a Task';
+      this.entertask = '';
+      this.mvsblty = 'visibility:hidden;height:0px;margin:0px;padding:0px';
     },
     deletetask(taskid) {
       var itodo = AV.Object.createWithoutData('task', taskid);
@@ -162,6 +178,13 @@ export default {
   }
   .el-card:last-child {
       margin-bottom: 0;
+  }
+  #mval {
+    margin-bottom: 6px;
+    width: 100%;
+  }
+  .mbtn {
+    width: 48%;
   }
   .el-row {
     margin-bottom: 10px;
