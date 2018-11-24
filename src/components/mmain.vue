@@ -1,5 +1,6 @@
 <template>
   <div id="mmain">
+    
     <el-card class="box-card" shadow="hover" id="today">
       <div id="today" class="today"> {{today}} </div>
     </el-card>
@@ -69,6 +70,7 @@ export default {
     this.initfunc();
   },
   methods: {
+
     additem(text, id, starttime, lastfor) {
 			this.todos.push({
 				id: id,
