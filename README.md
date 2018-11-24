@@ -1,20 +1,11 @@
-# Scris Task
-One to-do list app that clean up tasks automatically every day.
 
-- Sync from device to device.
-- Your data is on Leancloud server, it's secure.
-- Can be directly run from files (no need for localhost environment)
-- Well-designed (Some CSS is from a codepen project)
-- Made by Scris Game Studio
-- May be meaningful to you
-- Project Timer and Break Timer on one page
-- Note feature
-- Notification on some of the browsers.
-- Routine/Longterm/Planning tasks supported
+## Build Setup
 
-We have already announced a productive tool called Scris Efficiency 2 (aka Seffi or 极效率2), so Scris Task is also called Scris Efficiency 3 (or 极效率3)
+the same as building <https://github.com/ScrisStudio/linx.vue>
 
-![scrismade](https://img.shields.io/badge/Made%20with%20love%20by-Scris%20Studio-33ccff.svg)
+It was not finished yet.
+
+=======
 
 ![dominikmade](https://img.shields.io/badge/Developed%20by-Dominik%20Qiu-brightgreen.svg)
 
