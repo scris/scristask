@@ -11,3 +11,6 @@ image
 .vscode/
 scristask-darwin-x64/
 package-lock.json
+app/www/
+app/platforms/
+app/plugins/
