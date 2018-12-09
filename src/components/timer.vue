@@ -1,35 +1,39 @@
 <template>
   <div class="timer" id="timer">
-    <el-row>
-      <el-col>
-        <el-input placeholder="Name"
-          v-model="timertaskname" clearable></el-input>
-      </el-col>
-    </el-row>
-    <el-row v-show="timerow">
-      <el-col>
-        <el-input placeholder="Total Time (min)" 
-          v-model="timertimeset" clearable> </el-input>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col>
-        <el-button @click="countDown"> {{content}} </el-button>
-        <el-button @click="dbl" v-show="isDblShow"> {{dblclicky}} </el-button>
-      </el-col>
-    </el-row>
+    <div class="input inputwhited">{{ this.content }}</div>
+    <button class="button" @click="countDown" @dblclick="dbl"><mdplay v-if='isStarted == 0'/><mdpause v-else-if='isStarted == 1'/><mdrfilled v-else/></button>
+    <button class="button" @click="$emit('delete',timertaskname)"><mdcheck/></button>
   </div>
 </template>
 
 <script>
+import mdplay from "vue-material-design-icons/Play.vue"
+import mdcheck from "vue-material-design-icons/Check.vue"
+import mdpause from "vue-material-design-icons/Pause.vue"
+import mdrfilled from "vue-material-design-icons/RadioboxMarked.vue"
 var clock;
 export default ({
   name: 'timer',
+  props: {
+    timertitle: {
+      type: String,
+      required: true,
+    },
+    timertimeset: {
+      type: Number,
+      required: true,
+    }
+  },
+  components: {
+    mdplay,
+    mdcheck,
+    mdpause,
+    mdrfilled,
+  },
   data () {
     return {
-      content: 'Start Timer',
+      content: 'Timer haven\'t been Started yet' ,
       timertaskname: '',
-      timertimeset: '',
       total: 60,
       isStarted: 0,
       dblclicky: 'End Timer',
@@ -46,6 +50,7 @@ export default ({
       //1=working
       //2=paused
       if(this.isStarted == 0) {
+        this.$emit('start', this.timertaskname, this.timertimeset);
         if(!isNaN(parseInt(this.timertimeset))) {
           this.total = parseInt(this.timertimeset) * 60;
           this.isStarted = 1;
@@ -58,7 +63,6 @@ export default ({
               window.clearInterval(clock);
               this.content = 'Time is Up';
               this.total = 0;
-              this.timertimeset = '';
               this.isStarted = 0;
               this.timerow = true;
               this.notify('Time is Up','Now check whether you\'ve finished the task or not.');
@@ -74,7 +78,7 @@ export default ({
         this.isStarted = 2;
         window.clearInterval(clock);
         this.isDblShow = true;
-        this.content = 'Resume';
+        this.content = 'Click->Resume, Double->Finish';
       }
       else {
         this.isStarted = 1;
@@ -88,7 +92,6 @@ export default ({
             window.clearInterval(clock);
             this.content = 'Time is Up';
             this.total = 0;
-            this.timertimeset = '';
             this.isStarted = 0;
             this.timerow = true;
             this.notify('Time is Up','Now check whether you\'ve finished the task or not.');
@@ -101,7 +104,6 @@ export default ({
         window.clearInterval(clock);
         this.content = 'Start Timer';
         this.total = 0;
-        this.timertimeset = '';
         this.isStarted = 0;
         this.isDblShow = false;
         this.timerow = true;

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import register from '@/components/register';
-import mmain from '@/components/mmain';
+import simpleui from '@/components/simpleui';
 
 Vue.use(Router);
 
@@ -20,8 +20,8 @@ export default new Router({
     },
     {
       path: '/list',
-      name: 'mmain',
-      component: mmain,
+      name: 'simpleui',
+      component: simpleui,
     },
   ],
 });

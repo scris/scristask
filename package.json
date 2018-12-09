@@ -23,7 +23,9 @@
     "growl": "^1.10.5",
     "https-proxy-agent": "^2.2.1",
     "leancloud-storage": "^3.10.0",
+    "pip": "0.0.1",
     "vue": "^2.5.2",
+    "vue-material-design-icons": "^2.4.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

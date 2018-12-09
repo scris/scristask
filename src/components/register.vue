@@ -1,24 +1,10 @@
 <template>
   <div id="main">
-    <el-card class="box-card" shadow="hover" id="today">
-      <div id="today"> {{today}} </div>
-    </el-card>
-    <br>
-    <el-card class="box-card" shadow="hover" id="reglogin">
-      <el-form>
-        <el-form-item prop="email">
-          <el-input v-model="email" placeholder="Email" type="email"></el-input>
-        </el-form-item>
-        <el-form-item prop="pwd">
-          <el-input v-model="pwd" placeholder="Password" type="password"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="login">Login</el-button>
-          <el-button type="primary" @click="reg">Register</el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
-		<br>
+    <h1>{{ today }}</h1>
+    <input v-model="email" placeholder="Email" type="email" class="button input inputwithpadding"/><br>
+    <input v-model="pwd" placeholder="Password" type="password" class="button input inputwithpadding"/><br>
+    <button @click="login" class="button loginbtn">Login</button>&nbsp;&nbsp;
+    <button @click="reg" class="button loginbtn">Register</button>
   </div>
 </template>
 
@@ -40,6 +26,22 @@ export default {
       pwd: '',
       today: "Wow, it is Sunday! Isn't it?",
     };
+  },
+  mounted: function(){
+      var weekday = new Array(7);
+      var weekday = new Array(7);
+      weekday[0] = "Sunday 😊";
+      weekday[1] = "Monday 😎";
+      weekday[2] = "Tuesday 😀";
+      weekday[3] = "Wednesday 😏";
+      weekday[4] = "Thursday 😙";
+      weekday[5] = "Friday 😜";
+      weekday[6] = "Saturday 😇";
+      var dd = new Date();
+      var n = weekday[dd.getDay()];
+      var randomWordArray = Array("Wow, it's ", "Hey there, it's ", "Happy ", "It's currently ", "Awesome, it's ", "Have a nice ", "Happy splendid ", "Enjoy your ", "What a good day, it's ");
+      var randomWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
+      this.today = randomWord + n;
   },
   methods: {
     reg(){

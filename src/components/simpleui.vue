@@ -1,46 +1,29 @@
 <template>
-  <div id="mmain">
-    <el-dialog :title="titledialog" :visible.sync="ifdialog" :modal="ifdmodal">
-      <timer :timertitle="titledialog"></timer>
-      <breaktimer :breaktimertitle="titledialog"></breaktimer>
-    </el-dialog>
-    <el-card class="box-card" shadow="hover" id="today">
-      <div id="today" class="today"> {{today}} </div>
-    </el-card>
-    <el-card class="box-card" shadow="hover" id="taskmain">
-      <el-row>
-        <el-col>
-          <el-input autosize id="mval" :type="mtype" :placeholder="mplshldr" 
-            v-model="entertask" @focus="mtypeArea" clearable> </el-input>
-          <el-button class="mbtn" @click="modify" :style="mvsblty" type="success" icon="el-icon-circle-check">Done</el-button>
-          <el-button class="mbtn" @click="mtypeLine" :style="mvsblty" type="danger" icon="el-icon-circle-close">Close without Saving</el-button>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col>
-          <div v-if="todos.length">
-            <taskitem v-for="todo in todos" :key="todo.id" :todo="todo" @delete="deletetask" @start="starttask"/>
-          </div>
-          <el-alert v-else
-            title="No tasks left or Tasks are loading" :closable="false"
-            type="warning" show-icon>
-          </el-alert>
-        </el-col>
-      </el-row>
-		</el-card>
-    <a class="today" @click="logout">Log out</a>
-		<br><br>
+  <div id="simpleui" class="simpleui">
+    <h1>{{ today }}</h1>
+    <input class="input inputwithpadding" placeholder="Input your Task's Name" v-model="entertask"/>
+    <input class="input inputwithpadding" placeholder="When Should it Start" v-model="starttime"/><br>
+    <input class="input inputwithpadding" placeholder="How Long Will it Last" v-model="lastfor"/>
+    <button class="button" @click="modify"><mdcheck/></button><br>
+    <div id="tasks">
+      <div v-if="todos.length">
+        <taskitem v-for="todo in todos" :key="todo.id" :todo="todo" @delete="deletetask" @start="starttask"/>
+      </div>
+      <div v-else class="taskpane"> {{ notask }} </div>
+    </div>
+    <br><div id="footer">
+      <span class="tasktime">Dominik Qiu from Scris Studio - </span>
+      <span class="tasktime"><a>Tutorial</a></span>
+    </div>
   </div>
 </template>
-
 <script>
+import mdcheck from "vue-material-design-icons/Check.vue"
 import AV from 'leancloud-storage';
 import timer from '../components/timer.vue'
 import breaktimer from '../components/breaktimer.vue'
 import taskitem from '../components/taskitem.vue'
 import { log } from 'util';
-
-
 
 if(!AV.User.current) {
   this.$router.push('register'); 
@@ -50,39 +33,33 @@ var avtask = AV.Object.extend('task');
 var avnote = AV.Object.extend('note');
 
 export default {
-  name: 'main',
+  name: 'simpleui',
   components: {
     timer,
     breaktimer,
     taskitem,
+    mdcheck,
   },
   data() {
     return {
       today: "Wow, it is Sunday! Isn't it?",
       entertask: '',
       starttime: '',
-      lastfor: 0,
+      lastfor: '',
+      nlastfor: 0,
       todos: [],
-      mtype: 'text',
-      mplshldr: 'Click to Add a Task',
-      mvsblty: 'visibility:hidden;height:0px;margin:0px;padding:0px',
-      itemval: '',
-      ifdialog: false,
-      ifdmodal: false,
-      titledialog: 'Task',
+      notask: 'Tasks are Loading…',
     };
   },
   mounted: function(){
     this.initfunc();
   },
   methods: {
-
     additem(text, id, starttime, lastfor) {
 			this.todos.push({
 				id: id,
 				title: text,
         starttime: starttime,
-        lastfor: lastfor
       });
     },
     initfunc() {
@@ -117,15 +94,18 @@ export default {
             lastfor: taskr.get("lastfor")
           });
         });
+        thatq.notask = 'No tasks left';
       }, function (error) {
         alert(JSON.stringify(error));
       });
     },
     addtask() {
-      var eachline = this.itemval.split("\n");
-      var ataskname = eachline[0].trim();
-      var astarttime = eachline[1].trim();
-      var alastfor = Number(eachline[2].trim());
+      var ataskname = this.entertask.trim();
+      var astarttime = this.starttime.trim();
+      var alastfor = Number(this.lastfor.trim());
+      this.entertask = '';
+      this.starttime = '';
+      this.lastfor = '';
 			if (ataskname) {
         var itemVal = ataskname;
 				var todoFolder = new avtask();
@@ -144,26 +124,11 @@ export default {
     },
     modify() {
 			if (this.entertask) {
-        this.itemval = this.entertask;
-        this.mtypeLine();
         this.addtask();
       }
     },
-    mtypeArea() {
-      this.mtype = 'textarea';
-      this.mplshldr = 'First Line: Task Name \nSecond Line: When should the Task Starts (e.g. 08:15) \nThird Line: How Many Minutes is the Task Expected to Last (e.g. 30)';
-      this.entertask = '';
-      this.mvsblty = 'visibility:visible';
-    },
-    mtypeLine() {
-      this.mtype = 'text';
-      this.mplshldr = 'Click to Add a Task';
-      this.entertask = '';
-      this.mvsblty = 'visibility:hidden;height:0px;margin:0px;padding:0px';
-    },
-    starttask(todotitle){
-      this.ifdialog = true;
-      this.titledialog = todotitle;
+    starttask(taskid, tlastfor){
+      log(".i.")
     },
     deletetask(taskid) {
       var itodo = AV.Object.createWithoutData('task', taskid);
@@ -181,36 +146,4 @@ export default {
     },
   },
 };
-
-
 </script>
-<style>
-  .el-card {
-    margin-bottom: 10px;
-  }
-  .el-card:last-child {
-      margin-bottom: 0;
-  }
-  #mval {
-    margin-bottom: 6px;
-    width: 100%;
-  }
-  .mbtn {
-    width: 48%;
-  }
-  .el-row {
-    margin-bottom: 10px;
-  }
-  .el-row:last-child {
-      margin-bottom: 0;
-  }
-  .el-col {
-    border-radius: 4px;
-  }
-  .el-alert {
-    margin-bottom: 8px;
-  }
-  .el-alert:last-child {
-      margin-bottom: 0;
-  }
-</style>

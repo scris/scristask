@@ -1,3 +1,4 @@
+<!--
 <template>
   <div class="timer" id="timer">
     <el-row>
@@ -30,6 +31,12 @@
 var clock;
 export default ({
   name: 'breaktimer',
+  props: {
+    breaktimertitle: {
+      type: String,
+      required: true,
+    },
+  },
   data () {
     return {
       content: 'Start Timer',
@@ -145,3 +152,4 @@ export default ({
   },
 });
 </script>
+-->

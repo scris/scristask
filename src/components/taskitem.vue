@@ -1,25 +1,51 @@
 <template>
-    <el-card shadow="never">
-    <el-container>
-      <el-aside width="30%">
-        <span style="float: left;padding: 5px 0 12px 0">{{ todo.starttime }}<br> +{{ todo.lastfor }}</span>
-      </el-aside>
-      <el-main>
-        <span style="float: left">{{ todo.title }}</span>
-        <el-button style="float: right; padding: 1px 0" type="text" @click="$emit('delete', todo.id)" class="el-icon-close"></el-button>
-      </el-main>
-    </el-container>      
-    </el-card>
+    <div class="taskitem">
+      <div class="taskpane">
+        <div class="taskleft">
+          <button class="button tasktitle" @click="toggle"> {{ todo.title }} </button>
+          <div class="tasktime">
+            <mdlist/> {{ todo.starttime }} <mdtimer/> {{ todo.lastfor }} mins
+          </div>
+        </div>
+        <nav class="taskright">
+          <button class="button" @click="$emit('delete',todo.id)">&nbsp;<mdclose/></button>
+        </nav>
+      </div>
+      <div class="taskmore" v-if="toggling">
+          <timer :timertitle="todo.title" :timertimeset="todo.lastfor" @delete="$emit('delete',todo.id)"/>
+      </div>
+      <br>
+    </div>
 </template>
 
 <script>
+import mdclose from "vue-material-design-icons/Close.vue"
+import mdtimer from "vue-material-design-icons/Timer.vue"
+import mdlist from "../components/ClipboardTextPlayOutline.vue"
+import timer from "../components/timer.vue"
 export default {
   name: 'taskitem',
+  components: {
+    mdclose,
+    mdtimer,
+    mdlist,
+    timer,
+  },
   props: {
     todo: {
       type: Object,
       required: true,
     },
   },
+  data() {
+    return{
+      toggling: false,
+    }
+  },
+  methods: {
+    toggle() {
+      this.toggling = !this.toggling;
+    },
+  }
 }
 </script>
