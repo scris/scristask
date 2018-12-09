@@ -10,3 +10,4 @@ selenium-debug.log
 image
 .vscode/
 scristask-darwin-x64/
+package-lock.json
