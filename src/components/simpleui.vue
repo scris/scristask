@@ -7,7 +7,7 @@
     <button class="button" @click="modify"><mdcheck/></button><br>
     <div id="tasks">
       <div v-if="todos.length">
-        <taskitem v-for="todo in todos" :key="todo.id" :todo="todo" :slastfor="lastfor" @delete="deletetask" @start="starttask"/>
+        <taskitem v-for="todo in todos" :key="todo.id" :todo="todo" @delete="deletetask" @start="starttask"/>
       </div>
       <div v-else class="taskpane"> {{ notask }} </div>
     </div>
