@@ -48,10 +48,10 @@ export default {
   },
   methods: {
     initfunc() {
-      slastfor = String(this.todo.lastfor);
+      this.slastfor = String(this.todo.lastfor);
     },
     toggle() {
-      slastfor = String(this.todo.lastfor);
+      this.slastfor = String(this.todo.lastfor);
       this.toggling = !this.toggling;
     },
   }
