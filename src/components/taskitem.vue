@@ -36,11 +36,14 @@ export default {
       type: Object,
       required: true,
     },
+    slastfor: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return{
       toggling: false,
-      slastfor: '',
     }
   },
   mounted: function(){
@@ -48,10 +51,9 @@ export default {
   },
   methods: {
     initfunc() {
-      this.slastfor = String(this.todo.lastfor);
+    
     },
     toggle() {
-      this.slastfor = String(this.todo.lastfor);
       this.toggling = !this.toggling;
     },
   }
