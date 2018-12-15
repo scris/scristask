@@ -5,7 +5,9 @@ the same as building <https://github.com/ScrisStudio/linx.vue>
 
 It was not finished yet.
 
-=======
+If you wanna have a try, click the button below.
+
+[![Edit scristask](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/scris/scristask/tree/master/)
 
 ![dominikmade](https://img.shields.io/badge/Developed%20by-Dominik%20Qiu-brightgreen.svg)
 
