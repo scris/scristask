@@ -4,7 +4,7 @@
         <div class="taskleft">
           <button class="button tasktitle" @click="toggle"> {{ todo.title }} </button>
           <div class="tasktime">
-            <mdlist/> {{ todo.starttime }} <mdtimer/> {{ todo.lastfor }} mins
+            <mdlist/> {{ todo.starttime }} <mdtimer/> {{ slastfor }} mins
           </div>
         </div>
         <nav class="taskright">
@@ -40,14 +40,18 @@ export default {
   data() {
     return{
       toggling: false,
+      slastfor: '',
     }
   },
   mounted: function(){
     this.initfunc();
   },
   methods: {
-    initfunc
+    initfunc() {
+      slastfor = String(todo.lastfor);
+    },
     toggle() {
+      slastfor = String(todo.lastfor);
       this.toggling = !this.toggling;
     },
   }
