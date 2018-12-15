@@ -7,7 +7,7 @@
     <button class="button" @click="modify"><mdcheck/></button><br>
     <div id="tasks">
       <div v-if="todos.length">
-        <taskitem v-for="todo in todos" :key="todo.id" :todo="todo" @delete="deletetask" @start="starttask"/>
+        <taskitem v-for="todo in todos" :key="todo.id" :todo="todo" :lastfor="lastfor" @delete="deletetask" @start="starttask"/>
       </div>
       <div v-else class="taskpane"> {{ notask }} </div>
     </div>
@@ -60,6 +60,7 @@ export default {
 				id: id,
 				title: text,
         starttime: starttime,
+        lastfor: lastfor,
       });
     },
     initfunc() {
