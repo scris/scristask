@@ -85,6 +85,7 @@ export default {
       var query = new AV.Query('task');
       query.equalTo('owner', AV.User.current());
       var thatq = this;
+      query.ascending('starttime');
       query.find().then(function (results) {
         results.forEach((taskr) => {
           thatq.todos.push({
