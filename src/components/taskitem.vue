@@ -42,7 +42,11 @@ export default {
       toggling: false,
     }
   },
+  mounted: function(){
+    this.initfunc();
+  },
   methods: {
+    initfunc
     toggle() {
       this.toggling = !this.toggling;
     },
