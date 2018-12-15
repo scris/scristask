@@ -4,7 +4,7 @@
         <div class="taskleft">
           <button class="button tasktitle" @click="toggle"> {{ todo.title }} </button>
           <div class="tasktime">
-            <mdlist/> {{ todo.starttime }} <mdtimer/> {{ slastfor }} mins
+            <mdlist/> {{ todo.starttime }} <mdtimer/> {{ todo.lastfor }} mins
           </div>
         </div>
         <nav class="taskright">
@@ -34,10 +34,6 @@ export default {
   props: {
     todo: {
       type: Object,
-      required: true,
-    },
-    slastfor: {
-      type: String,
       required: true,
     },
   },
