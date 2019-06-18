@@ -3,11 +3,7 @@
 
 the same as building <https://github.com/ScrisStudio/linx.vue>
 
-It was not finished yet.
-
-If you wanna have a try, click the button below.
-
-[![Edit scristask](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/scris/scristask/tree/master/)
+[Have a Try](https://task.scris.top/)
 
 ![dominikmade](https://img.shields.io/badge/Developed%20by-Dominik%20Qiu-brightgreen.svg)
 
@@ -16,9 +12,9 @@ If you wanna have a try, click the button below.
 ### If you wanna copy it to your server or you find the task.scris.top server has ran out of flow
 1. Fork the proj
 2. Register an Leancloud account
-3. Open signup/initLeanCloud.js
-4. Make APPID & APPKEY your own.
+3. Open src/components/register.vue
+4. Make APPID & APPKEY your own. (On Line 16&17)
 5. If your Leancloud App is not in the US node, delete <code>region: 'us'</code>
 6. Wait for some time, and you can use your own Scris Task.
 
-Copyright &copy; 2015-2018 Scris Studio.
+Copyright &copy; 2015-2019 Scris Studio.
