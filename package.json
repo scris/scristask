@@ -1,7 +1,7 @@
 {
-  "name": "scristask-vue",
+  "name": "scristask",
   "version": "1.10.0",
-  "description": "The Vue.js remake version of Scris Task",
+  "description": "Special Tasklist and Two Timers",
   "author": "Dominik Qiu <slaaker@126.com>",
   "private": true,
   "scripts": {
@@ -9,9 +9,9 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "edev": "node build/build.electron.js && electron build/electron.js",
-    "ewin": "node build/build.electron.js && electron-packager ./dist/ linxvue --platform=win32 --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
-    "emac": "node build/build.electron.js && electron-packager ./dist/ linxvue --platform=darwin --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
-    "elinux": "node build/build.electron.js && electron-packager ./dist/ linxvue --platform=linux --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
+    "ewin": "node build/build.electron.js && electron-packager ./dist/ ScrisTask --platform=win32 --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
+    "emac": "node build/build.electron.js && electron-packager ./dist/ Task --platform=darwin --arch=x64 --icon=./src/assets/favicon.icns --overwrite",
+    "elinux": "node build/build.electron.js && electron-packager ./dist/ ScrisTask --platform=linux --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
     "cbrowser": "node build/build.app.js && cd app && cordova run browser && cd ../",
     "cios": "node build/build.app.js && cd app && cordova run ios && cd ../",
     "candroid": "node build/build.app.js && cd app && cordova run android && cd ../"
@@ -49,8 +49,8 @@
     "cross-env": "^5.2.0",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
-    "electron": "^3.0.2",
-    "electron-packager": "^12.1.2",
+    "electron": "^5.0.4",
+    "electron-packager": "^13.1.1",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^11.3.0",
     "eslint-friendly-formatter": "^3.0.0",
