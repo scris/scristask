@@ -9,10 +9,8 @@
         </div>
         <nav class="taskright">
           <button class="button" @click="$emit('delete',todo.id)">&nbsp;<mdclose/></button>
+          <button class="button" @click="$emit('delete',todo.id)"><mdcheck/></button>
         </nav>
-      </div>
-      <div class="taskmore" v-if="toggling">
-          <timer :timertitle="todo.title" :timertimeset="todo.lastfor" @delete="$emit('delete',todo.id)"/>
       </div>
       <br>
     </div>
@@ -22,14 +20,14 @@
 import mdclose from "vue-material-design-icons/Close.vue"
 import mdtimer from "vue-material-design-icons/Timer.vue"
 import mdlist from "../components/ClipboardTextPlayOutline.vue"
-import timer from "../components/timer.vue"
+import mdcheck from "vue-material-design-icons/Check.vue"
 export default {
   name: 'taskitem',
   components: {
     mdclose,
     mdtimer,
     mdlist,
-    timer,
+    mdcheck,
   },
   props: {
     todo: {

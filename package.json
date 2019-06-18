@@ -5,17 +5,16 @@
   "author": "Dominik Qiu <slaaker@126.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env LINX_AGENT=vue webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "unit": "cross-env LINX_AGENT=vue jest --config test/unit/jest.conf.js --coverage",
-    "e2e": "cross-env LINX_AGENT=vue node test/e2e/runner.js",
-    "test": "cross-env LINX_AGENT=vue npm run unit && npm run e2e",
-    "lint": "cross-env LINX_AGENT=vue eslint --ext .js,.vue src test/unit test/e2e/specs",
-    "build": "cross-env LINX_AGENT=vue node build/build.js",
-    "edev": "cross-env LINX_AGENT=electron npm run build && electron build/electron.js",
-    "ebuild": "cross-env LINX_AGENT=electron electron-packager ./dist/ scristask --platform=darwin --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
-    "cdev": "cross-env LINX_AGENT=cordova node build/build.app.js",
-    "cbuild": "cross-env LINX_AGENT=cordova cross-env NODE_ENV=production node build/build.app.js"
+    "build": "node build/build.js",
+    "edev": "node build/build.electron.js && electron build/electron.js",
+    "ewin": "node build/build.electron.js && electron-packager ./dist/ linxvue --platform=win32 --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
+    "emac": "node build/build.electron.js && electron-packager ./dist/ linxvue --platform=darwin --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
+    "elinux": "node build/build.electron.js && electron-packager ./dist/ linxvue --platform=linux --arch=x64 --icon=./src/assets/favicon.ico --overwrite",
+    "cbrowser": "node build/build.app.js && cd app && cordova run browser && cd ../",
+    "cios": "node build/build.app.js && cd app && cordova run ios && cd ../",
+    "candroid": "node build/build.app.js && cd app && cordova run android && cd ../"
   },
   "dependencies": {
     "ajv": "^6.5.4",

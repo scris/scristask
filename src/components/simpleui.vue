@@ -11,9 +11,11 @@
       </div>
       <div v-else class="taskpane"> {{ notask }} </div>
     </div>
-    <br><div id="footer">
-      <span class="tasktime">Dominik Qiu from Scris Studio - </span>
-      <span class="tasktime"><a>Tutorial</a></span>
+    <br>
+    <div id="footer">
+      <b><span class="tasktime">Dominik Qiu from Scris Studio</span></b>
+      <!--<span class="tasktime"><a>Tutorial</a></span>-->
+      <br><span class="tasktime">Use <b><a href="https://wnr.scris.top/">wnr</a></b> together to get better experience.</span>
     </div>
   </div>
 </template>
